@@ -30,7 +30,7 @@ ROhdsiWebApi::insertCohortDefinitionSetInPackage(fileName = "inst/settings/Cohor
                                                  insertTableSql = TRUE,
                                                  insertCohortCreationR = TRUE,
                                                  generateStats = TRUE,
-                                                 packageName = "CovidHospCohortDiag")
+                                                 packageName = "InfluenzaHospCohortDiag")
 
 
 # Store environment in which the study was executed -----------------------
