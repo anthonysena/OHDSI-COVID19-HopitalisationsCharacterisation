@@ -32,7 +32,7 @@ maxCores <- parallel::detectCores()
 # oracleTempSchema <- NULL
 
 # Details specific to the database:
-# outputFolder <- "s:/examplePackage/mdcd"
+# outputFolder <- "s:/InfluenzaHospCohortDiag/mdcd"
 # cdmDatabaseSchema <- "cdm_ibm_mdcd_v1023.dbo"
 # cohortDatabaseSchema <- "scratch.dbo"
 # cohortTable <- "mschuemi_skeleton_mdcd"

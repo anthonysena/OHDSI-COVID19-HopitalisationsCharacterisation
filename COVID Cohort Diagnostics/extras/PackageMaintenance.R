@@ -1,6 +1,6 @@
 # Copyright 2019 Observational Health Data Sciences and Informatics
 #
-# This file is part of examplePackage
+# This file is part of CovidHospCohortDiag
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,12 +16,12 @@
 
 # Format and check code ---------------------------------------------------
 OhdsiRTools::formatRFolder()
-OhdsiRTools::checkUsagePackage("examplePackage")
+OhdsiRTools::checkUsagePackage("CovidHospCohortDiag")
 OhdsiRTools::updateCopyrightYearFolder()
 
 # Create manual -----------------------------------------------------------
-shell("rm extras/examplePackage.pdf")
-shell("R CMD Rd2pdf ./ --output=extras/examplePackage.pdf")
+shell("rm extras/CovidHospCohortDiag.pdf")
+shell("R CMD Rd2pdf ./ --output=extras/CovidHospCohortDiag.pdf")
 
 
 # Insert cohort definitions from ATLAS into package -----------------------
@@ -34,4 +34,4 @@ ROhdsiWebApi::insertCohortDefinitionSetInPackage(fileName = "inst/settings/Cohor
 
 
 # Store environment in which the study was executed -----------------------
-OhdsiRTools::insertEnvironmentSnapshotInPackage("examplePackage")
+OhdsiRTools::insertEnvironmentSnapshotInPackage("CovidHospCohortDiag")
