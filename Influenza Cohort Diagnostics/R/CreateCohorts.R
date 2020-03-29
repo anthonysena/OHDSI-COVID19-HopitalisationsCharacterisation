@@ -1,6 +1,6 @@
 # Copyright 2020 Observational Health Data Sciences and Informatics
 #
-# This file is part of CovidHospCohortDiag
+# This file is part of InfluenzaHospCohortDiag
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@
   
   # Create study cohort table structure:
   sql <- SqlRender::loadRenderTranslateSql(sqlFilename = "CreateCohortTable.sql",
-                                           packageName = "CovidHospCohortDiag",
+                                           packageName = "InfluenzaHospCohortDiag",
                                            dbms = attr(connection, "dbms"),
                                            oracleTempSchema = oracleTempSchema,
                                            cohort_database_schema = cohortDatabaseSchema,
@@ -33,7 +33,7 @@
   
   
   # Insert rule names in cohort_inclusion table:
-  pathToCsv <- system.file("cohorts", "InclusionRules.csv", package = "CovidHospCohortDiag")
+  pathToCsv <- system.file("cohorts", "InclusionRules.csv", package = "InfluenzaHospCohortDiag")
   inclusionRules <- read.csv(pathToCsv)  
   inclusionRules <- data.frame(cohort_definition_id = inclusionRules$cohortId,
                                rule_sequence = inclusionRules$ruleSequence,
@@ -48,12 +48,12 @@
   
   
   # Instantiate cohorts:
-  pathToCsv <- system.file("settings", "CohortsToCreateInfluenza.csv", package = "CovidHospCohortDiag")
+  pathToCsv <- system.file("settings", "CohortsToCreateInfluenza.csv", package = "InfluenzaHospCohortDiag")
   cohortsToCreate <- read.csv(pathToCsv)
   for (i in 1:nrow(cohortsToCreate)) {
     writeLines(paste("Creating cohort:", cohortsToCreate$name[i]))
     sql <- SqlRender::loadRenderTranslateSql(sqlFilename = paste0(cohortsToCreate$name[i], ".sql"),
-                                             packageName = "CovidHospCohortDiag",
+                                             packageName = "InfluenzaHospCohortDiag",
                                              dbms = attr(connection, "dbms"),
                                              oracleTempSchema = oracleTempSchema,
                                              cdm_database_schema = cdmDatabaseSchema,
