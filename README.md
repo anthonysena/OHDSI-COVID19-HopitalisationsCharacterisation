@@ -1,4 +1,4 @@
-Characterizing individuals hospitalized with  influenza in 2015-2019 and COVID-19 in 2019-2020: evidence from the OHDSI network 
+Characterizing individuals hospitalized with  influenza in 2009-2010 and 2014-2019, and COVID-19 in 2019-2020
 =============
 
 <img src="https://img.shields.io/badge/Study%20Status-Repo%20Created-lightgray.svg" alt="Study Status: Repo Created">
