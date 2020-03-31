@@ -13,3 +13,14 @@ Characterizing individuals hospitalized with  influenza in 2009-2010 and 2014-20
 - Protocol: 
 - Publications: 
 - Results explorer: 
+
+
+This study package is currently comprised of two cohort diagnostics packages. The first, in "/COVID Cohort Diagnostics", is for cohorts of individuals with COVID-19. The second, in "/Influenza Cohort Diagnostic", is for cohorts of individuals with influenza in previous years.  
+
+
+**General instructions:**
+1) Download and unzip this entire repositor
+2) To run COVID cohort characteristics- navigate to "/COVID Cohort Diagnostics", and build the "CovidHospCohortDiag.Rproj" (making sure you have all the required packages installed). Go to CodeToRun in extras, and add your connection details etc and then run.
+3) The same as #2, but with "/Influenza Cohort Diagnostics" and "InfluenzaHospCohortDiag.Rproj"
+4) Results will be zip folders in your output folders.
+Note, only try and run 2) or 3) if you have individuals satisfying the eligibility criteria for these cohorts. 
