@@ -1,9 +1,9 @@
 atlasId,atlasName,cohortId,name
-247,COVID ID5 v1,1,COVID ID5 v1
-248,COVID ID6 v1,2,COVID ID6 v1
-249,COVID ID7 v1,3,COVID ID7 v1
-250,COVID ID8 v1,4,COVID ID8 v1
-251,COVID ID9 v1,5,COVID ID9 v1
-252,COVID ID10 v1,6,COVID ID10 v1
-253,COVID ID11 v1,7,COVID ID11 v1
-254,COVID ID12 v1,8,COVID ID12 v1
+247,COVID ID5 v1,1,Influenza narrow - with prior observation - 2009-2010 season
+248,COVID ID6 v1,2,Influenza narrow - with no prior observation required - 2009-2010 season
+249,COVID ID7 v1,3,Influenza broad - with prior observation - 2009-2010 season
+250,COVID ID8 v1,4,Influenza broad - with no prior observation required - 2009-2010 season
+251,COVID ID9 v1,5,Influenza narrow - with prior observation - 2014-2019 seasons
+252,COVID ID10 v1,6,Influenza narrow - with no prior observation required - 2014-2019 seasons
+253,COVID ID11 v1,7,Influenza broad - with prior observation - 2014-2019 seasons
+254,COVID ID12 v1,8,Influenza broad - with no prior observation required - 2014-2019 seasons
