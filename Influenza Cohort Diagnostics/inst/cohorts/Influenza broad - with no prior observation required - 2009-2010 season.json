@@ -7,8 +7,6 @@
         "items": [
           {
             "concept": {
-              "CONCEPT_CLASS_ID": "Visit",
-              "CONCEPT_CODE": "ERIP",
               "CONCEPT_ID": 262,
               "CONCEPT_NAME": "Emergency Room and Inpatient Visit",
               "STANDARD_CONCEPT": "S",
