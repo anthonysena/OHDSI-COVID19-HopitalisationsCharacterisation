@@ -19,7 +19,7 @@ This study package is currently comprised of two cohort diagnostics packages. Th
 
 
 **General instructions:**
-1) Download and unzip this entire repositor
+1) Download and unzip this entire repository
 2) To run COVID cohort characteristics- navigate to "/COVID Cohort Diagnostics", and build the "CovidHospCohortDiag.Rproj" (making sure you have all the required packages installed). Go to CodeToRun in extras, and add your connection details etc and then run.
 3) The same as #2, but with "/Influenza Cohort Diagnostics" and "InfluenzaHospCohortDiag.Rproj"
 4) Results will be zip folders in your output folders.
