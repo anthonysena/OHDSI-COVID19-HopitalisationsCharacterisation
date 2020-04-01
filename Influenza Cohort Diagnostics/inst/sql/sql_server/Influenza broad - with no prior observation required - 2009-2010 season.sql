@@ -5,66 +5,6 @@ CREATE TABLE #Codesets (
 ;
 
 INSERT INTO #Codesets (codeset_id, concept_id)
-SELECT 0 as codeset_id, c.concept_id FROM (select distinct I.concept_id FROM
-( 
-  select concept_id from @vocabulary_database_schema.CONCEPT where concept_id in (37311061)and invalid_reason is null
-UNION  select c.concept_id
-  from @vocabulary_database_schema.CONCEPT c
-  join @vocabulary_database_schema.CONCEPT_ANCESTOR ca on c.concept_id = ca.descendant_concept_id
-  and ca.ancestor_concept_id in (37311061)
-  and c.invalid_reason is null
-
-) I
-) C;
-INSERT INTO #Codesets (codeset_id, concept_id)
-SELECT 1 as codeset_id, c.concept_id FROM (select distinct I.concept_id FROM
-( 
-  select concept_id from @vocabulary_database_schema.CONCEPT where concept_id in (37310282)and invalid_reason is null
-UNION  select c.concept_id
-  from @vocabulary_database_schema.CONCEPT c
-  join @vocabulary_database_schema.CONCEPT_ANCESTOR ca on c.concept_id = ca.descendant_concept_id
-  and ca.ancestor_concept_id in (37310282)
-  and c.invalid_reason is null
-
-) I
-) C;
-INSERT INTO #Codesets (codeset_id, concept_id)
-SELECT 2 as codeset_id, c.concept_id FROM (select distinct I.concept_id FROM
-( 
-  select concept_id from @vocabulary_database_schema.CONCEPT where concept_id in (756055)and invalid_reason is null
-UNION  select c.concept_id
-  from @vocabulary_database_schema.CONCEPT c
-  join @vocabulary_database_schema.CONCEPT_ANCESTOR ca on c.concept_id = ca.descendant_concept_id
-  and ca.ancestor_concept_id in (756055)
-  and c.invalid_reason is null
-
-) I
-LEFT JOIN
-(
-  select concept_id from @vocabulary_database_schema.CONCEPT where concept_id in (37310282,37310281)and invalid_reason is null
-UNION  select c.concept_id
-  from @vocabulary_database_schema.CONCEPT c
-  join @vocabulary_database_schema.CONCEPT_ANCESTOR ca on c.concept_id = ca.descendant_concept_id
-  and ca.ancestor_concept_id in (37310282,37310281)
-  and c.invalid_reason is null
-
-) E ON I.concept_id = E.concept_id
-WHERE E.concept_id is null
-) C;
-INSERT INTO #Codesets (codeset_id, concept_id)
-SELECT 3 as codeset_id, c.concept_id FROM (select distinct I.concept_id FROM
-( 
-  select concept_id from @vocabulary_database_schema.CONCEPT where concept_id in (710158,710155,710156,710159,710160,45756093,42501115,586414,45600471,586415)and invalid_reason is null
-
-) I
-LEFT JOIN
-(
-  select concept_id from @vocabulary_database_schema.CONCEPT where concept_id in (45542411,710157)and invalid_reason is null
-
-) E ON I.concept_id = E.concept_id
-WHERE E.concept_id is null
-) C;
-INSERT INTO #Codesets (codeset_id, concept_id)
 SELECT 4 as codeset_id, c.concept_id FROM (select distinct I.concept_id FROM
 ( 
   select concept_id from @vocabulary_database_schema.CONCEPT where concept_id in (262,9201)and invalid_reason is null
@@ -183,21 +123,21 @@ WHERE E.concept_id is null
 INSERT INTO #Codesets (codeset_id, concept_id)
 SELECT 10 as codeset_id, c.concept_id FROM (select distinct I.concept_id FROM
 ( 
-  select concept_id from @vocabulary_database_schema.CONCEPT where concept_id in (4272240,1572255,44829293,1572256,44823445)and invalid_reason is null
+  select concept_id from @vocabulary_database_schema.CONCEPT where concept_id in (4223659,4272240,1572255,439926,44829293,44823445,1572256)and invalid_reason is null
 UNION  select c.concept_id
   from @vocabulary_database_schema.CONCEPT c
   join @vocabulary_database_schema.CONCEPT_ANCESTOR ca on c.concept_id = ca.descendant_concept_id
-  and ca.ancestor_concept_id in (4272240,1572255,44829293,1572256,44823445)
+  and ca.ancestor_concept_id in (4223659,4272240,1572255,439926,44829293,44823445,1572256)
   and c.invalid_reason is null
 
 ) I
 LEFT JOIN
 (
-  select concept_id from @vocabulary_database_schema.CONCEPT where concept_id in (4225027)and invalid_reason is null
+  select concept_id from @vocabulary_database_schema.CONCEPT where concept_id in (4158491,37396808,4219363,4221911,37205051,37205052,45772721,4225027,40484614,4092860,4090207,44782753)and invalid_reason is null
 UNION  select c.concept_id
   from @vocabulary_database_schema.CONCEPT c
   join @vocabulary_database_schema.CONCEPT_ANCESTOR ca on c.concept_id = ca.descendant_concept_id
-  and ca.ancestor_concept_id in (4225027)
+  and ca.ancestor_concept_id in (4158491,37396808,4219363,4221911,37205051,37205052,45772721,4225027,40484614,4092860,4090207,44782753)
   and c.invalid_reason is null
 
 ) E ON I.concept_id = E.concept_id
@@ -225,13 +165,6 @@ UNION  select c.concept_id
 
 ) E ON I.concept_id = E.concept_id
 WHERE E.concept_id is null
-) C;
-INSERT INTO #Codesets (codeset_id, concept_id)
-SELECT 12 as codeset_id, c.concept_id FROM (select distinct I.concept_id FROM
-( 
-  select concept_id from @vocabulary_database_schema.CONCEPT where concept_id in (710157,45763724)and invalid_reason is null
-
-) I
 ) C;
 INSERT INTO #Codesets (codeset_id, concept_id)
 SELECT 13 as codeset_id, c.concept_id FROM (select distinct I.concept_id FROM
@@ -311,7 +244,7 @@ from
 JOIN #Codesets codesets on ((vo.visit_concept_id = codesets.concept_id and codesets.codeset_id = 4))
 ) C
 
-WHERE (C.visit_start_date >= DATEFROMPARTS(2014, 09, 01) and C.visit_start_date <= DATEFROMPARTS(2019, 04, 01))
+WHERE (C.visit_start_date >= DATEFROMPARTS(2009, 09, 01) and C.visit_start_date <= DATEFROMPARTS(2010, 04, 01))
 -- End Visit Occurrence Criteria
 
   ) E
@@ -796,52 +729,6 @@ GROUP BY e.person_id, e.event_id
 
 select 1 as inclusion_rule_id, person_id, event_id
 INTO #Inclusion_1
-FROM 
-(
-  select pe.person_id, pe.event_id
-  FROM #qualified_events pe
-  
-JOIN (
--- Begin Criteria Group
-select 0 as index_id, person_id, event_id
-FROM
-(
-  select E.person_id, E.event_id 
-  FROM #qualified_events E
-  INNER JOIN
-  (
-    -- Begin Correlated Criteria
-SELECT 0 as index_id, p.person_id, p.event_id
-FROM #qualified_events P
-INNER JOIN
-(
-  -- Begin Observation Period Criteria
-select C.person_id, C.observation_period_id as event_id, C.observation_period_start_date as start_date, C.observation_period_end_date as end_date, C.period_type_concept_id as TARGET_CONCEPT_ID, CAST(NULL as bigint) as visit_occurrence_id
-from 
-(
-        select op.*, row_number() over (PARTITION BY op.person_id ORDER BY op.observation_period_start_date) as ordinal
-        FROM @cdm_database_schema.OBSERVATION_PERIOD op
-) C
-
-
--- End Observation Period Criteria
-
-) A on A.person_id = P.person_id and A.START_DATE >= P.OP_START_DATE AND A.START_DATE <= P.OP_END_DATE AND A.START_DATE >= P.OP_START_DATE and A.START_DATE <= DATEADD(day,-365,P.START_DATE) AND A.END_DATE >= DATEADD(day,0,P.END_DATE) AND A.END_DATE <= P.OP_END_DATE
-GROUP BY p.person_id, p.event_id
-HAVING COUNT(A.TARGET_CONCEPT_ID) >= 1
--- End Correlated Criteria
-
-  ) CQ on E.person_id = CQ.person_id and E.event_id = CQ.event_id
-  GROUP BY E.person_id, E.event_id
-  HAVING COUNT(index_id) = 1
-) G
--- End Criteria Group
-) AC on AC.person_id = pe.person_id AND AC.event_id = pe.event_id
-) Results
-;
-
-select 2 as inclusion_rule_id, person_id, event_id
-INTO #Inclusion_2
 FROM 
 (
   select pe.person_id, pe.event_id
@@ -1619,17 +1506,12 @@ SELECT inclusion_rule_id, person_id, event_id
 INTO #inclusion_events
 FROM (select inclusion_rule_id, person_id, event_id from #Inclusion_0
 UNION ALL
-select inclusion_rule_id, person_id, event_id from #Inclusion_1
-UNION ALL
-select inclusion_rule_id, person_id, event_id from #Inclusion_2) I;
+select inclusion_rule_id, person_id, event_id from #Inclusion_1) I;
 TRUNCATE TABLE #Inclusion_0;
 DROP TABLE #Inclusion_0;
 
 TRUNCATE TABLE #Inclusion_1;
 DROP TABLE #Inclusion_1;
-
-TRUNCATE TABLE #Inclusion_2;
-DROP TABLE #Inclusion_2;
 
 
 with cteIncludedEvents(event_id, person_id, start_date, end_date, op_start_date, op_end_date, ordinal) as
@@ -1644,7 +1526,7 @@ with cteIncludedEvents(event_id, person_id, start_date, end_date, op_start_date,
   ) MG -- matching groups
 
   -- the matching group with all bits set ( POWER(2,# of inclusion rules) - 1 = inclusion_rule_mask
-  WHERE (MG.inclusion_rule_mask = POWER(cast(2 as bigint),3)-1)
+  WHERE (MG.inclusion_rule_mask = POWER(cast(2 as bigint),2)-1)
 
 )
 select event_id, person_id, start_date, end_date, op_start_date, op_end_date

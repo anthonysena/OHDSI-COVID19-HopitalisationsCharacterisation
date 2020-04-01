@@ -1,285 +1,6 @@
 {
   "ConceptSets": [
     {
-      "id": 0,
-      "name": "COVID-19 (including asymptomatic)",
-      "expression": {
-        "items": [
-          {
-            "concept": {
-              "CONCEPT_CLASS_ID": "Clinical Finding",
-              "CONCEPT_CODE": "840539006",
-              "CONCEPT_ID": 37311061,
-              "CONCEPT_NAME": "Disease caused by severe acute respiratory syndrome coronavirus 2",
-              "DOMAIN_ID": "Condition",
-              "INVALID_REASON": "V",
-              "INVALID_REASON_CAPTION": "Valid",
-              "STANDARD_CONCEPT": "S",
-              "STANDARD_CONCEPT_CAPTION": "Standard",
-              "VOCABULARY_ID": "SNOMED"
-            },
-            "includeDescendants": true
-          }
-        ]
-      }
-    },
-    {
-      "id": 1,
-      "name": "COVID-19 specific testing (pre-coordinated Measurements) - Positive",
-      "expression": {
-        "items": [
-          {
-            "concept": {
-              "CONCEPT_CLASS_ID": "Clinical Finding",
-              "CONCEPT_CODE": "1240581000000104",
-              "CONCEPT_ID": 37310282,
-              "CONCEPT_NAME": "2019 novel coronavirus detected",
-              "DOMAIN_ID": "Measurement",
-              "INVALID_REASON": "V",
-              "INVALID_REASON_CAPTION": "Valid",
-              "STANDARD_CONCEPT": "S",
-              "STANDARD_CONCEPT_CAPTION": "Standard",
-              "VOCABULARY_ID": "SNOMED"
-            },
-            "includeDescendants": true
-          }
-        ]
-      }
-    },
-    {
-      "id": 2,
-      "name": "COVID-19 specific testing (pre-coordinated Measurements excluded)",
-      "expression": {
-        "items": [
-          {
-            "concept": {
-              "CONCEPT_CLASS_ID": "Clinical Finding",
-              "CONCEPT_CODE": "1240581000000104",
-              "CONCEPT_ID": 37310282,
-              "CONCEPT_NAME": "2019 novel coronavirus detected",
-              "DOMAIN_ID": "Measurement",
-              "INVALID_REASON": "V",
-              "INVALID_REASON_CAPTION": "Valid",
-              "STANDARD_CONCEPT": "S",
-              "STANDARD_CONCEPT_CAPTION": "Standard",
-              "VOCABULARY_ID": "SNOMED"
-            },
-            "isExcluded": true,
-            "includeDescendants": true
-          },
-          {
-            "concept": {
-              "CONCEPT_CLASS_ID": "Clinical Finding",
-              "CONCEPT_CODE": "1240591000000102",
-              "CONCEPT_ID": 37310281,
-              "CONCEPT_NAME": "2019 novel coronavirus not detected",
-              "DOMAIN_ID": "Measurement",
-              "INVALID_REASON": "V",
-              "INVALID_REASON_CAPTION": "Valid",
-              "STANDARD_CONCEPT": "S",
-              "STANDARD_CONCEPT_CAPTION": "Standard",
-              "VOCABULARY_ID": "SNOMED"
-            },
-            "isExcluded": true,
-            "includeDescendants": true
-          },
-          {
-            "concept": {
-              "CONCEPT_CLASS_ID": "Procedure",
-              "CONCEPT_CODE": "OMOP4873969",
-              "CONCEPT_ID": 756055,
-              "CONCEPT_NAME": "Measurement of severe acute respiratory syndrome coronavirus 2",
-              "DOMAIN_ID": "Measurement",
-              "INVALID_REASON": "V",
-              "INVALID_REASON_CAPTION": "Valid",
-              "STANDARD_CONCEPT": "S",
-              "STANDARD_CONCEPT_CAPTION": "Standard",
-              "VOCABULARY_ID": "OMOP Extension"
-            },
-            "includeDescendants": true
-          }
-        ]
-      }
-    },
-    {
-      "id": 3,
-      "name": "COVID-19 source codes",
-      "expression": {
-        "items": [
-          {
-            "concept": {
-              "CONCEPT_CLASS_ID": "ICD10 code",
-              "CONCEPT_CODE": "U07.100",
-              "CONCEPT_ID": 710158,
-              "CONCEPT_NAME": "COVID-19 (machine translation)",
-              "DOMAIN_ID": "Observation",
-              "INVALID_REASON": "V",
-              "INVALID_REASON_CAPTION": "Valid",
-              "STANDARD_CONCEPT": "N",
-              "STANDARD_CONCEPT_CAPTION": "Non-Standard",
-              "VOCABULARY_ID": "ICD10CN"
-            }
-          },
-          {
-            "concept": {
-              "CONCEPT_CLASS_ID": "ICD10 code",
-              "CONCEPT_CODE": "U07.100x003",
-              "CONCEPT_ID": 710155,
-              "CONCEPT_NAME": "COVID-19 pneumonia (machine translation)",
-              "DOMAIN_ID": "Observation",
-              "INVALID_REASON": "V",
-              "INVALID_REASON_CAPTION": "Valid",
-              "STANDARD_CONCEPT": "N",
-              "STANDARD_CONCEPT_CAPTION": "Non-Standard",
-              "VOCABULARY_ID": "ICD10CN"
-            }
-          },
-          {
-            "concept": {
-              "CONCEPT_CLASS_ID": "ICD10 code",
-              "CONCEPT_CODE": "U07.100x001",
-              "CONCEPT_ID": 710156,
-              "CONCEPT_NAME": "COVID-19 pneumonia (machine translation)",
-              "DOMAIN_ID": "Observation",
-              "INVALID_REASON": "V",
-              "INVALID_REASON_CAPTION": "Valid",
-              "STANDARD_CONCEPT": "N",
-              "STANDARD_CONCEPT_CAPTION": "Non-Standard",
-              "VOCABULARY_ID": "ICD10CN"
-            }
-          },
-          {
-            "concept": {
-              "CONCEPT_CLASS_ID": "ICD10 code",
-              "CONCEPT_CODE": "U07.100x002",
-              "CONCEPT_ID": 710159,
-              "CONCEPT_NAME": "Confirmed COVID-19, excluding pneumonia (machine translation)",
-              "DOMAIN_ID": "Observation",
-              "INVALID_REASON": "V",
-              "INVALID_REASON_CAPTION": "Valid",
-              "STANDARD_CONCEPT": "N",
-              "STANDARD_CONCEPT_CAPTION": "Non-Standard",
-              "VOCABULARY_ID": "ICD10CN"
-            }
-          },
-          {
-            "concept": {
-              "CONCEPT_CLASS_ID": "6-char billing code",
-              "CONCEPT_CODE": "Z20.828",
-              "CONCEPT_ID": 45542411,
-              "CONCEPT_NAME": "Contact with and (suspected) exposure to other viral communicable diseases",
-              "DOMAIN_ID": "Observation",
-              "INVALID_REASON": "V",
-              "INVALID_REASON_CAPTION": "Valid",
-              "STANDARD_CONCEPT": "N",
-              "STANDARD_CONCEPT_CAPTION": "Non-Standard",
-              "VOCABULARY_ID": "ICD10CM"
-            },
-            "isExcluded": true
-          },
-          {
-            "concept": {
-              "CONCEPT_CLASS_ID": "ICD10 code",
-              "CONCEPT_CODE": "U07.1",
-              "CONCEPT_ID": 710160,
-              "CONCEPT_NAME": "Emergency use of U07.1 | Disease caused by severe acute respiratory syndrome coronavirus 2",
-              "DOMAIN_ID": "Observation",
-              "INVALID_REASON": "V",
-              "INVALID_REASON_CAPTION": "Valid",
-              "STANDARD_CONCEPT": "N",
-              "STANDARD_CONCEPT_CAPTION": "Non-Standard",
-              "VOCABULARY_ID": "ICD10CN"
-            }
-          },
-          {
-            "concept": {
-              "CONCEPT_CLASS_ID": "ICD10 code",
-              "CONCEPT_CODE": "U07.1",
-              "CONCEPT_ID": 45756093,
-              "CONCEPT_NAME": "Emergency use of U07.1 | Disease caused by severe acute respiratory syndrome coronavirus 2",
-              "DOMAIN_ID": "Condition",
-              "INVALID_REASON": "V",
-              "INVALID_REASON_CAPTION": "Valid",
-              "STANDARD_CONCEPT": "N",
-              "STANDARD_CONCEPT_CAPTION": "Non-Standard",
-              "VOCABULARY_ID": "ICD10"
-            }
-          },
-          {
-            "concept": {
-              "CONCEPT_CLASS_ID": "KCD7 code",
-              "CONCEPT_CODE": "U07.1",
-              "CONCEPT_ID": 42501115,
-              "CONCEPT_NAME": "Emergency use of U07.1 | Disease caused by severe acute respiratory syndrome coronavirus 2",
-              "DOMAIN_ID": "Condition",
-              "INVALID_REASON": "V",
-              "INVALID_REASON_CAPTION": "Valid",
-              "STANDARD_CONCEPT": "N",
-              "STANDARD_CONCEPT_CAPTION": "Non-Standard",
-              "VOCABULARY_ID": "KCD7"
-            }
-          },
-          {
-            "concept": {
-              "CONCEPT_CLASS_ID": "KCD7 code",
-              "CONCEPT_CODE": "U18.1",
-              "CONCEPT_ID": 586414,
-              "CONCEPT_NAME": "Novel coronavirus infection",
-              "DOMAIN_ID": "Condition",
-              "INVALID_REASON": "V",
-              "INVALID_REASON_CAPTION": "Valid",
-              "STANDARD_CONCEPT": "N",
-              "STANDARD_CONCEPT_CAPTION": "Non-Standard",
-              "VOCABULARY_ID": "KCD7"
-            }
-          },
-          {
-            "concept": {
-              "CONCEPT_CLASS_ID": "5-char billing code",
-              "CONCEPT_CODE": "B97.29",
-              "CONCEPT_ID": 45600471,
-              "CONCEPT_NAME": "Other coronavirus as the cause of diseases classified elsewhere",
-              "DOMAIN_ID": "Condition",
-              "INVALID_REASON": "V",
-              "INVALID_REASON_CAPTION": "Valid",
-              "STANDARD_CONCEPT": "N",
-              "STANDARD_CONCEPT_CAPTION": "Non-Standard",
-              "VOCABULARY_ID": "ICD10CM"
-            }
-          },
-          {
-            "concept": {
-              "CONCEPT_CLASS_ID": "KCD7 code",
-              "CONCEPT_CODE": "U18",
-              "CONCEPT_ID": 586415,
-              "CONCEPT_NAME": "Provisional assignment of new diseases or emergency use",
-              "DOMAIN_ID": "Condition",
-              "INVALID_REASON": "V",
-              "INVALID_REASON_CAPTION": "Valid",
-              "STANDARD_CONCEPT": "N",
-              "STANDARD_CONCEPT_CAPTION": "Non-Standard",
-              "VOCABULARY_ID": "KCD7"
-            }
-          },
-          {
-            "concept": {
-              "CONCEPT_CLASS_ID": "ICD10 code",
-              "CONCEPT_CODE": "Z03.800x001",
-              "CONCEPT_ID": 710157,
-              "CONCEPT_NAME": "Suspected case of COVID-19 (machine translation)",
-              "DOMAIN_ID": "Condition",
-              "INVALID_REASON": "V",
-              "INVALID_REASON_CAPTION": "Valid",
-              "STANDARD_CONCEPT": "N",
-              "STANDARD_CONCEPT_CAPTION": "Non-Standard",
-              "VOCABULARY_ID": "ICD10CN"
-            },
-            "isExcluded": true
-          }
-        ]
-      }
-    },
-    {
       "id": 4,
       "name": "[OHDSI Covid19 v1] Inpatient Visit",
       "expression": {
@@ -2013,9 +1734,136 @@
     },
     {
       "id": 10,
-      "name": "[Covid19 V1] Malaise or (Malaise and Fatigue)",
+      "name": "[Covid19 V1] Malaise or Fatigue or (Malaise and Fatigue)",
       "expression": {
         "items": [
+          {
+            "concept": {
+              "CONCEPT_CLASS_ID": "Clinical Finding",
+              "CONCEPT_CODE": "272036004",
+              "CONCEPT_ID": 4158491,
+              "CONCEPT_NAME": "C/O - debility - malaise",
+              "DOMAIN_ID": "Condition",
+              "INVALID_REASON": "V",
+              "INVALID_REASON_CAPTION": "Valid",
+              "STANDARD_CONCEPT": "S",
+              "STANDARD_CONCEPT_CAPTION": "Standard",
+              "VOCABULARY_ID": "SNOMED"
+            },
+            "isExcluded": true,
+            "includeDescendants": true
+          },
+          {
+            "concept": {
+              "CONCEPT_CLASS_ID": "Clinical Finding",
+              "CONCEPT_CODE": "716749005",
+              "CONCEPT_ID": 37396808,
+              "CONCEPT_NAME": "Cancer-related fatigue",
+              "DOMAIN_ID": "Condition",
+              "INVALID_REASON": "V",
+              "INVALID_REASON_CAPTION": "Valid",
+              "STANDARD_CONCEPT": "S",
+              "STANDARD_CONCEPT_CAPTION": "Standard",
+              "VOCABULARY_ID": "SNOMED"
+            },
+            "isExcluded": true,
+            "includeDescendants": true
+          },
+          {
+            "concept": {
+              "CONCEPT_CLASS_ID": "Clinical Finding",
+              "CONCEPT_CODE": "82022002",
+              "CONCEPT_ID": 4219363,
+              "CONCEPT_NAME": "Congenital debility of fetus",
+              "DOMAIN_ID": "Condition",
+              "INVALID_REASON": "V",
+              "INVALID_REASON_CAPTION": "Valid",
+              "STANDARD_CONCEPT": "S",
+              "STANDARD_CONCEPT_CAPTION": "Standard",
+              "VOCABULARY_ID": "SNOMED"
+            },
+            "isExcluded": true,
+            "includeDescendants": true
+          },
+          {
+            "concept": {
+              "CONCEPT_CLASS_ID": "Clinical Finding",
+              "CONCEPT_CODE": "84229001",
+              "CONCEPT_ID": 4223659,
+              "CONCEPT_NAME": "Fatigue",
+              "DOMAIN_ID": "Condition",
+              "INVALID_REASON": "V",
+              "INVALID_REASON_CAPTION": "Valid",
+              "STANDARD_CONCEPT": "S",
+              "STANDARD_CONCEPT_CAPTION": "Standard",
+              "VOCABULARY_ID": "SNOMED"
+            },
+            "includeDescendants": true
+          },
+          {
+            "concept": {
+              "CONCEPT_CLASS_ID": "Clinical Finding",
+              "CONCEPT_CODE": "420900006",
+              "CONCEPT_ID": 4221911,
+              "CONCEPT_NAME": "Fatigue associated with AIDS",
+              "DOMAIN_ID": "Condition",
+              "INVALID_REASON": "V",
+              "INVALID_REASON_CAPTION": "Valid",
+              "STANDARD_CONCEPT": "S",
+              "STANDARD_CONCEPT_CAPTION": "Standard",
+              "VOCABULARY_ID": "SNOMED"
+            },
+            "isExcluded": true,
+            "includeDescendants": true
+          },
+          {
+            "concept": {
+              "CONCEPT_CLASS_ID": "Clinical Finding",
+              "CONCEPT_CODE": "784317004",
+              "CONCEPT_ID": 37205051,
+              "CONCEPT_NAME": "Fatigue due to chemotherapy",
+              "DOMAIN_ID": "Condition",
+              "INVALID_REASON": "V",
+              "INVALID_REASON_CAPTION": "Valid",
+              "STANDARD_CONCEPT": "S",
+              "STANDARD_CONCEPT_CAPTION": "Standard",
+              "VOCABULARY_ID": "SNOMED"
+            },
+            "isExcluded": true,
+            "includeDescendants": true
+          },
+          {
+            "concept": {
+              "CONCEPT_CLASS_ID": "Clinical Finding",
+              "CONCEPT_CODE": "784318009",
+              "CONCEPT_ID": 37205052,
+              "CONCEPT_NAME": "Fatigue due to radiation therapy",
+              "DOMAIN_ID": "Condition",
+              "INVALID_REASON": "V",
+              "INVALID_REASON_CAPTION": "Valid",
+              "STANDARD_CONCEPT": "S",
+              "STANDARD_CONCEPT_CAPTION": "Standard",
+              "VOCABULARY_ID": "SNOMED"
+            },
+            "isExcluded": true,
+            "includeDescendants": true
+          },
+          {
+            "concept": {
+              "CONCEPT_CLASS_ID": "Clinical Finding",
+              "CONCEPT_CODE": "704369007",
+              "CONCEPT_ID": 45772721,
+              "CONCEPT_NAME": "Fatigue due to treatment",
+              "DOMAIN_ID": "Condition",
+              "INVALID_REASON": "V",
+              "INVALID_REASON_CAPTION": "Valid",
+              "STANDARD_CONCEPT": "S",
+              "STANDARD_CONCEPT_CAPTION": "Standard",
+              "VOCABULARY_ID": "SNOMED"
+            },
+            "isExcluded": true,
+            "includeDescendants": true
+          },
           {
             "concept": {
               "CONCEPT_CLASS_ID": "Clinical Finding",
@@ -2048,6 +1896,21 @@
           },
           {
             "concept": {
+              "CONCEPT_CLASS_ID": "Clinical Finding",
+              "CONCEPT_CODE": "271795006",
+              "CONCEPT_ID": 439926,
+              "CONCEPT_NAME": "Malaise and fatigue",
+              "DOMAIN_ID": "Condition",
+              "INVALID_REASON": "V",
+              "INVALID_REASON_CAPTION": "Valid",
+              "STANDARD_CONCEPT": "S",
+              "STANDARD_CONCEPT_CAPTION": "Standard",
+              "VOCABULARY_ID": "SNOMED"
+            },
+            "includeDescendants": true
+          },
+          {
+            "concept": {
               "CONCEPT_CLASS_ID": "4-dig nonbill code",
               "CONCEPT_CODE": "780.7",
               "CONCEPT_ID": 44829293,
@@ -2074,8 +1937,23 @@
               "STANDARD_CONCEPT_CAPTION": "Standard",
               "VOCABULARY_ID": "SNOMED"
             },
-            "includeDescendants": true,
-            "isExcluded": true
+            "isExcluded": true,
+            "includeDescendants": true
+          },
+          {
+            "concept": {
+              "CONCEPT_CLASS_ID": "5-dig billing code",
+              "CONCEPT_CODE": "780.79",
+              "CONCEPT_ID": 44823445,
+              "CONCEPT_NAME": "Other malaise and fatigue",
+              "DOMAIN_ID": "Condition",
+              "INVALID_REASON": "V",
+              "INVALID_REASON_CAPTION": "Valid",
+              "STANDARD_CONCEPT": "N",
+              "STANDARD_CONCEPT_CAPTION": "Non-Standard",
+              "VOCABULARY_ID": "ICD9CM"
+            },
+            "includeDescendants": true
           },
           {
             "concept": {
@@ -2094,17 +1972,66 @@
           },
           {
             "concept": {
-              "CONCEPT_CLASS_ID": "5-dig billing code",
-              "CONCEPT_CODE": "780.79",
-              "CONCEPT_ID": 44823445,
-              "CONCEPT_NAME": "Other malaise and fatigue",
+              "CONCEPT_CLASS_ID": "Clinical Finding",
+              "CONCEPT_CODE": "444042007",
+              "CONCEPT_ID": 40484614,
+              "CONCEPT_NAME": "Postexertional fatigue",
               "DOMAIN_ID": "Condition",
               "INVALID_REASON": "V",
               "INVALID_REASON_CAPTION": "Valid",
-              "STANDARD_CONCEPT": "N",
-              "STANDARD_CONCEPT_CAPTION": "Non-Standard",
-              "VOCABULARY_ID": "ICD9CM"
+              "STANDARD_CONCEPT": "S",
+              "STANDARD_CONCEPT_CAPTION": "Standard",
+              "VOCABULARY_ID": "SNOMED"
             },
+            "isExcluded": true,
+            "includeDescendants": true
+          },
+          {
+            "concept": {
+              "CONCEPT_CLASS_ID": "Clinical Finding",
+              "CONCEPT_CODE": "250002000",
+              "CONCEPT_ID": 4092860,
+              "CONCEPT_NAME": "Rapid fatigue of gait",
+              "DOMAIN_ID": "Condition",
+              "INVALID_REASON": "V",
+              "INVALID_REASON_CAPTION": "Valid",
+              "STANDARD_CONCEPT": "S",
+              "STANDARD_CONCEPT_CAPTION": "Standard",
+              "VOCABULARY_ID": "SNOMED"
+            },
+            "isExcluded": true,
+            "includeDescendants": true
+          },
+          {
+            "concept": {
+              "CONCEPT_CLASS_ID": "Clinical Finding",
+              "CONCEPT_CODE": "18726006",
+              "CONCEPT_ID": 4090207,
+              "CONCEPT_NAME": "Senile asthenia",
+              "DOMAIN_ID": "Condition",
+              "INVALID_REASON": "V",
+              "INVALID_REASON_CAPTION": "Valid",
+              "STANDARD_CONCEPT": "S",
+              "STANDARD_CONCEPT_CAPTION": "Standard",
+              "VOCABULARY_ID": "SNOMED"
+            },
+            "isExcluded": true,
+            "includeDescendants": true
+          },
+          {
+            "concept": {
+              "CONCEPT_CLASS_ID": "Clinical Finding",
+              "CONCEPT_CODE": "148871000119109",
+              "CONCEPT_ID": 44782753,
+              "CONCEPT_NAME": "Weakness as a late effect of stroke",
+              "DOMAIN_ID": "Condition",
+              "INVALID_REASON": "V",
+              "INVALID_REASON_CAPTION": "Valid",
+              "STANDARD_CONCEPT": "S",
+              "STANDARD_CONCEPT_CAPTION": "Standard",
+              "VOCABULARY_ID": "SNOMED"
+            },
+            "isExcluded": true,
             "includeDescendants": true
           }
         ]
@@ -2224,42 +2151,6 @@
               "VOCABULARY_ID": "SNOMED"
             },
             "includeDescendants": true
-          }
-        ]
-      }
-    },
-    {
-      "id": 12,
-      "name": "COVID-19 Suspected OR Suspected unspecific coronavirus infection - Source and Standard terminology",
-      "expression": {
-        "items": [
-          {
-            "concept": {
-              "CONCEPT_CLASS_ID": "ICD10 code",
-              "CONCEPT_CODE": "Z03.800x001",
-              "CONCEPT_ID": 710157,
-              "CONCEPT_NAME": "Suspected case of COVID-19 (machine translation)",
-              "DOMAIN_ID": "Condition",
-              "INVALID_REASON": "V",
-              "INVALID_REASON_CAPTION": "Valid",
-              "STANDARD_CONCEPT": "N",
-              "STANDARD_CONCEPT_CAPTION": "Non-Standard",
-              "VOCABULARY_ID": "ICD10CN"
-            }
-          },
-          {
-            "concept": {
-              "CONCEPT_CLASS_ID": "Context-dependent",
-              "CONCEPT_CODE": "700217006",
-              "CONCEPT_ID": 45763724,
-              "CONCEPT_NAME": "Suspected coronavirus infection",
-              "DOMAIN_ID": "Condition",
-              "INVALID_REASON": "V",
-              "INVALID_REASON_CAPTION": "Valid",
-              "STANDARD_CONCEPT": "S",
-              "STANDARD_CONCEPT_CAPTION": "Standard",
-              "VOCABULARY_ID": "SNOMED"
-            }
           }
         ]
       }
