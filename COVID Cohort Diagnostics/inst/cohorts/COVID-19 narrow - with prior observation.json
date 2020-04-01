@@ -7,15 +7,15 @@
         "items": [
           {
             "concept": {
-              "CONCEPT_CLASS_ID": "Clinical Finding",
-              "CONCEPT_CODE": "840539006",
               "CONCEPT_ID": 37311061,
               "CONCEPT_NAME": "Disease caused by severe acute respiratory syndrome coronavirus 2",
-              "DOMAIN_ID": "Condition",
-              "INVALID_REASON_CAPTION": "Unknown",
               "STANDARD_CONCEPT": "S",
               "STANDARD_CONCEPT_CAPTION": "Standard",
-              "VOCABULARY_ID": "SNOMED"
+              "INVALID_REASON_CAPTION": "Unknown",
+              "CONCEPT_CODE": "840539006",
+              "DOMAIN_ID": "Condition",
+              "VOCABULARY_ID": "SNOMED",
+              "CONCEPT_CLASS_ID": "Clinical Finding"
             },
             "includeDescendants": true
           }
@@ -29,15 +29,15 @@
         "items": [
           {
             "concept": {
-              "CONCEPT_CLASS_ID": "Clinical Finding",
-              "CONCEPT_CODE": "1240581000000104",
               "CONCEPT_ID": 37310282,
               "CONCEPT_NAME": "2019 novel coronavirus detected",
-              "DOMAIN_ID": "Condition",
-              "INVALID_REASON_CAPTION": "Unknown",
               "STANDARD_CONCEPT": "S",
               "STANDARD_CONCEPT_CAPTION": "Standard",
-              "VOCABULARY_ID": "SNOMED"
+              "INVALID_REASON_CAPTION": "Unknown",
+              "CONCEPT_CODE": "1240581000000104",
+              "DOMAIN_ID": "Condition",
+              "VOCABULARY_ID": "SNOMED",
+              "CONCEPT_CLASS_ID": "Clinical Finding"
             },
             "includeDescendants": true
           }
@@ -51,45 +51,45 @@
         "items": [
           {
             "concept": {
-              "CONCEPT_CLASS_ID": "Clinical Finding",
-              "CONCEPT_CODE": "1240581000000104",
               "CONCEPT_ID": 37310282,
               "CONCEPT_NAME": "2019 novel coronavirus detected",
-              "DOMAIN_ID": "Condition",
-              "INVALID_REASON_CAPTION": "Unknown",
               "STANDARD_CONCEPT": "S",
               "STANDARD_CONCEPT_CAPTION": "Standard",
-              "VOCABULARY_ID": "SNOMED"
+              "INVALID_REASON_CAPTION": "Unknown",
+              "CONCEPT_CODE": "1240581000000104",
+              "DOMAIN_ID": "Condition",
+              "VOCABULARY_ID": "SNOMED",
+              "CONCEPT_CLASS_ID": "Clinical Finding"
             },
             "isExcluded": true,
             "includeDescendants": true
           },
           {
             "concept": {
-              "CONCEPT_CLASS_ID": "Clinical Finding",
-              "CONCEPT_CODE": "1240591000000102",
               "CONCEPT_ID": 37310281,
               "CONCEPT_NAME": "2019 novel coronavirus not detected",
-              "DOMAIN_ID": "Condition",
-              "INVALID_REASON_CAPTION": "Unknown",
               "STANDARD_CONCEPT": "S",
               "STANDARD_CONCEPT_CAPTION": "Standard",
-              "VOCABULARY_ID": "SNOMED"
+              "INVALID_REASON_CAPTION": "Unknown",
+              "CONCEPT_CODE": "1240591000000102",
+              "DOMAIN_ID": "Condition",
+              "VOCABULARY_ID": "SNOMED",
+              "CONCEPT_CLASS_ID": "Clinical Finding"
             },
             "isExcluded": true,
             "includeDescendants": true
           },
           {
             "concept": {
-              "CONCEPT_CLASS_ID": "Procedure",
-              "CONCEPT_CODE": "OMOP4873969",
               "CONCEPT_ID": 756055,
               "CONCEPT_NAME": "Measurement of severe acute respiratory syndrome coronavirus 2",
-              "DOMAIN_ID": "Measurement",
-              "INVALID_REASON_CAPTION": "Valid",
               "STANDARD_CONCEPT": "S",
               "STANDARD_CONCEPT_CAPTION": "Standard",
+              "INVALID_REASON_CAPTION": "Valid",
+              "CONCEPT_CODE": "OMOP4873969",
+              "DOMAIN_ID": "Measurement",
               "VOCABULARY_ID": "OMOP Extension",
+              "CONCEPT_CLASS_ID": "Procedure",
               "INVALID_REASON": "V"
             },
             "includeDescendants": true
@@ -276,29 +276,29 @@
         "items": [
           {
             "concept": {
-              "CONCEPT_CLASS_ID": "Visit",
-              "CONCEPT_CODE": "ERIP",
               "CONCEPT_ID": 262,
               "CONCEPT_NAME": "Emergency Room and Inpatient Visit",
-              "DOMAIN_ID": "Visit",
-              "INVALID_REASON_CAPTION": "Unknown",
               "STANDARD_CONCEPT": "S",
               "STANDARD_CONCEPT_CAPTION": "Standard",
-              "VOCABULARY_ID": "Visit"
+              "INVALID_REASON_CAPTION": "Unknown",
+              "CONCEPT_CODE": "ERIP",
+              "DOMAIN_ID": "Visit",
+              "VOCABULARY_ID": "Visit",
+              "CONCEPT_CLASS_ID": "Visit"
             },
             "includeDescendants": true
           },
           {
             "concept": {
-              "CONCEPT_CLASS_ID": "Visit",
-              "CONCEPT_CODE": "IP",
               "CONCEPT_ID": 9201,
               "CONCEPT_NAME": "Inpatient Visit",
-              "DOMAIN_ID": "Visit",
-              "INVALID_REASON_CAPTION": "Unknown",
               "STANDARD_CONCEPT": "S",
               "STANDARD_CONCEPT_CAPTION": "Standard",
-              "VOCABULARY_ID": "Visit"
+              "INVALID_REASON_CAPTION": "Unknown",
+              "CONCEPT_CODE": "IP",
+              "DOMAIN_ID": "Visit",
+              "VOCABULARY_ID": "Visit",
+              "CONCEPT_CLASS_ID": "Visit"
             },
             "includeDescendants": true
           }
