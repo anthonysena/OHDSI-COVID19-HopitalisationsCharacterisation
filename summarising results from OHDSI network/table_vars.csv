@@ -62,8 +62,8 @@ condition_era group during day -365 through 0 days relative to index: Neoplasm o
 condition_era group during day -365 through 0 days relative to index: Primary malignant neoplasm of prostate,Table 2
 condition_era group during day -365 through 0 days relative to index: Neoplasm of skin,Table 2
 condition_era group during day -365 through 0 days relative to index: Malignant neoplasm of digestive system,Table 2
-ondition_era group during day -365 through 0 days relative to index: Neoplasm of head and neck,Table 2
-condition_era group during day -30 through 0 days relative to index: Malignant tumor of oropharynx,Table 2
+condition_era group during day -365 through 0 days relative to index: Neoplasm of head and neck,Table 2
+condition_era group during day -365 through 0 days relative to index: Malignant tumor of oropharynx,Table 2
 condition_era group during day -365 through 0 days relative to index: Malignant neoplasm of genitourinary organ,Table 2
 condition_era group during day -365 through 0 days relative to index: Asthma,Table 2
 condition_era group during day -365 through 0 days relative to index: Chronic obstructive lung disease,Table 2
@@ -101,7 +101,7 @@ drug_era group during day 0 through 0 days relative to index: Hydroxychloroquine
 drug_era group during day -365 through 0 days relative to index: Methotrexate,Table 3
 drug_era group during day -30 through 0 days relative to index: Methotrexate,Table 3
 drug_era group during day 0 through 0 days relative to index: Methotrexate,Table 3
-"drug_era group during day -365 through 0 days relative to index: leflunomide,",Table 3
+drug_era group during day -365 through 0 days relative to index: leflunomide,Table 3
 drug_era group during day -30 through 0 days relative to index: leflunomide,Table 3
 drug_era group during day 0 through 0 days relative to index: leflunomide,Table 3
 drug_era group during day -365 through 0 days relative to index: Sulfasalazine,Table 3
