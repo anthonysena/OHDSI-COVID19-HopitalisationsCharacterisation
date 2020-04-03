@@ -1,0 +1,114 @@
+covariateName,Table
+gender = MALE,Table 1
+gender = FEMALE,Table 1
+age group: 15-19,Table 1
+age group: 20-24,Table 1
+age group: 25-29,Table 1
+age group: 30-34,Table 1
+age group: 40-44,Table 1
+age group: 45-49,Table 1
+age group: 50-54,Table 1
+age group: 55-59,Table 1
+age group: 60-64,Table 1
+age group: 65-69,Table 1
+age group: 70-74,Table 1
+age group: 75-79,Table 1
+age group: 80-84,Table 1
+age group: 85-89,Table 1
+age group: 90-94,Table 1
+age group: 25-29,Table 1
+age group: 35-39,Table 1
+age group: 95-99,Table 1
+age group: 00-04,Table 1
+Charlson index - Romano adaptation,Table 2
+condition_era group during day -365 through 0 days relative to index: Anemia,Table 2
+condition_era group during day -365 through 0 days relative to index: Chronic liver disease,Table 2
+condition_era group during day -365 through 0 days relative to index: Dementia,Table 2
+condition_era group during day -365 through 0 days relative to index: Diabetes mellitus,Table 2
+condition_era group during day -365 through 0 days relative to index: Disorder due to type 1 diabetes mellitus,Table 2
+condition_era group during day -365 through 0 days relative to index: Disorder due to type 2 diabetes mellitus,Table 2
+condition_era group during day -365 through 0 days relative to index: Gastroesophageal reflux disease,Table 2
+condition_era group during day -365 through 0 days relative to index: Gastrointestinal hemorrhage,Table 2
+condition_era group during day -365 through 0 days relative to index: Renal impairment,Table 2
+condition_era group during day -365 through 0 days relative to index: End-stage renal disease,Table 2
+condition_era group during day -365 through 0 days relative to index: Human immunodeficiency virus infection,Table 2
+condition_era group during day -365 through 0 days relative to index: Hyperlipidemia,Table 2
+condition_era group during day -365 through 0 days relative to index: Osteoarthritis,Table 2
+condition_era group during day -365 through 0 days relative to index: Immunodeficiency disorder,Table 2
+condition_era group during day -365 through 0 days relative to index: Viral hepatitis,Table 3
+condition_era group during day -365 through 0 days relative to index: Viral hepatitis C,Table 3
+condition_era group during day -365 through 0 days relative to index: Epilepsy,Table 3
+condition_era group during day -365 through 0 days relative to index: Atrial fibrillation,Table 3
+condition_era group during day -365 through 0 days relative to index: Cardiomyopathy,Table 3
+condition_era group during day -365 through 0 days relative to index: Cerebrovascular disease,Table 3
+condition_era group during day -365 through 0 days relative to index: Coronary arteriosclerosis,Table 3
+condition_era group during day -365 through 0 days relative to index: Heart disease,Table 3
+condition_era group during day -365 through 0 days relative to index: Heart failure,Table 3
+condition_era group during day -365 through 0 days relative to index: Hypertensive disorder,Table 3
+condition_era group during day -365 through 0 days relative to index: Ischemic heart disease,Table 3
+condition_era group during day -365 through 0 days relative to index: Peripheral vascular disease,Table 3
+condition_era group during day -30 through 0 days relative to index: Pulmonary embolism,Table 3
+condition_era group during day -365 through 0 days relative to index: Venous thrombosis,Table 3
+condition_era group during day -365 through 0 days relative to index: Neoplastic disease,Table 3
+condition_era group during day -365 through 0 days relative to index: Malignant neoplastic disease,Table 3
+condition_era group during day -365 through 0 days relative to index: Malignant tumor of lymphoid hemopoietic and related tissue,Table 3
+condition_era group during day -365 through 0 days relative to index: Malignant lymphoma,Table 3
+condition_era group during day -365 through 0 days relative to index: Hematologic neoplasm,Table 3
+condition_era group during day -365 through 0 days relative to index: Malignant neoplasm of female breast,Table 3
+condition_era group during day -365 through 0 days relative to index: Malignant neoplasm of colon and/or rectum,Table 3
+condition_era group during day -365 through 0 days relative to index: Malignant neoplasm of respiratory system,Table 3
+condition_era group during day -365 through 0 days relative to index: Primary malignant neoplasm of lung,Table 3
+condition_era group during day -365 through 0 days relative to index: Neoplasm of lung,Table 3
+condition_era group during day -365 through 0 days relative to index: Primary malignant neoplasm of prostate,Table 3
+condition_era group during day -365 through 0 days relative to index: Neoplasm of skin,Table 3
+condition_era group during day -365 through 0 days relative to index: Malignant neoplasm of digestive system,Table 3
+ondition_era group during day -365 through 0 days relative to index: Neoplasm of head and neck,Table 3
+condition_era group during day -30 through 0 days relative to index: Malignant tumor of oropharynx,Table 3
+condition_era group during day -365 through 0 days relative to index: Malignant neoplasm of genitourinary organ,Table 3
+condition_era group during day -365 through 0 days relative to index: Asthma,Table 3
+condition_era group during day -365 through 0 days relative to index: Chronic obstructive lung disease,Table 3
+condition_era group during day -365 through 0 days relative to index: Chronic bronchitis,Table 3
+condition_era group during day -365 through 0 days relative to index: Pulmonary emphysema,Table 3
+condition_era group during day -365 through 0 days relative to index: Cystic fibrosis,Table 3
+condition_era group during day -365 through 0 days relative to index: Bronchiectasis,Table 3
+condition_era group during day -365 through 0 days relative to index: Interstitial lung disease,Table 3
+condition_era group during day -365 through 0 days relative to index: Pulmonary hypertension,Table 3
+condition_era group during day -365 through 0 days relative to index: Psoriasis,Table 3
+condition_era group during day -365 through 0 days relative to index: Rheumatoid arthritis,Table 3
+condition_era group during day -365 through 0 days relative to index: Lupus erythematosus,Table 3
+condition_era group during day -365 through 0 days relative to index: Multiple sclerosis,Table 3
+condition_era group during day -30 through 0 days relative to index: Inflammatory bowel disease,Table 3
+condition_era group during day -365 through 0 days relative to index: Crohn's disease,Table 3
+condition_era group during day -365 through 0 days relative to index: Ulcerative colitis,Table 3
+"drug_era group during day -30 through 0 days relative to index: Angiotensin II antagonists, plain
+drug_era group during day -365 through 0 days relative to index: Angiotensin II antagonists, plain
+drug_era group during day 0 through 0 days relative to index: Angiotensin II antagonists, plain",Table 3
+"drug_era group during day -30 through 0 days relative to index: ANTIBACTERIALS FOR SYSTEMIC USE, drug_era group during day -365 through 0 days relative to index: ANTIBACTERIALS FOR SYSTEMIC USE, drug_era group during day 0 through 0 days relative to index: ANTIBACTERIALS FOR SYSTEMIC USE",Table 3
+"drug_era group during day -365 through 0 days relative to index: AGENTS ACTING ON THE RENIN-ANGIOTENSIN SYSTEM, drug_era group during day -30 through 0 days relative to index: AGENTS ACTING ON THE RENIN-ANGIOTENSIN SYSTEM, drug_era group during day 0through 0 days relative to index: AGENTS ACTING ON THE RENIN-ANGIOTENSIN SYSTEM",Table 3
+"drug_era group during day 0 through 0 days relative to index: ANTIEPILEPTICS
+drug_era group during day -30 through 0 days relative to index: ANTIEPILEPTICS
+drug_era group during day -365 through 0 days relative to index: ANTIEPILEPTICS",Table 3
+"drug_era group during day -365 through 0 days relative to index: ANTIINFLAMMATORY AND ANTIRHEUMATIC PRODUCTS, drug_era group during day -30 through 0 days relative to index: ANTIINFLAMMATORY AND ANTIRHEUMATIC PRODUCTS, drug_era group during day 0 through 0 days relative to index: ANTIINFLAMMATORY AND ANTIRHEUMATIC PRODUCTS",Table 3
+"drug_era group during day -30 through 0 days relative to index: Hydroxychloroquine, drug_era group during day -365 through 0 days relative to index: Hydroxychloroquine, drug_era group during day 0 through 0 days relative to index: Hydroxychloroquine",Table 3
+"drug_era group during day -365 through 0 days relative to index: Methotrexate, drug_era group during day -30 through 0 days relative to index: Methotrexate, drug_era group during day 0 through 0 days relative to index: Methotrexate",Table 3
+"drug_era group during day -365 through 0 days relative to index: leflunomide, drug_era group during day -30 through 0 days relative to index: leflunomide, drug_era group during day 0 through 0 days relative to index: leflunomide",Table 3
+"drug_era group during day -365 through 0 days relative to index: Sulfasalazine, drug_era group during day -30 through 0 days relative to index: Sulfasalazine, drug_era group during day 0 through 0 days relative to index: Sulfasalazine",Table 3
+"drug_era group during day -365 through 0 days relative to index: ANTINEOPLASTIC AGENTS, drug_era group during day -30 through 0 days relative to index: ANTINEOPLASTIC AGENTS, drug_era group during day 0 through 0 days relative to index: ANTINEOPLASTIC AGENTS",Table 3
+"drug_era group during day -365 through 0 days relative to index: ANTIPSORIATICS, drug_era group during day -30 through 0 days relative to index: ANTIPSORIATICS, drug_era group during day 0 through 0 days relative to index: ANTIPSORIATICS",Table 3
+"drug_era group during day -365 through 0 days relative to index: ANTIPSORIATICS, drug_era group during day -30 through 0 days relative to index: ANTIPSORIATICS, drug_era group during day 0 through 0 days relative to index: ANTIPSORIATICS",Table 3
+"drug_era group during day -365 through 0 days relative to index: BETA BLOCKING AGENTS, drug_era group during day -30 through 0 days relative to index: BETA BLOCKING AGENTS, drug_era group during day 0 through 0 days relative to index: BETA BLOCKING AGENTS",Table 3
+"drug_era group during day -365 through 0 days relative to index: CALCIUM CHANNEL BLOCKERS, drug_era group during day -30 through 0 days relative to index: CALCIUM CHANNEL BLOCKERS, drug_era group during day 0 through 0 days relative to index: CALCIUM CHANNEL BLOCKERS",Table 3
+"drug_era group during day -365 through 0 days relative to index: DIURETICS, drug_era group during day -30 through 0 days relative to index: DIURETICS, drug_era group during day 0 through 0 days relative to index: DIURETICS",Table 3
+"drug_era group during day -365 through 0 days relative to index: DRUGS FOR ACID RELATED DISORDERS, drug_era group during day -30 through 0 days relative to index: DRUGS FOR ACID RELATED DISORDERS, drug_era group during day 0 through 0 days relative to index: DRUGS FOR ACID RELATED DISORDERS",Table 3
+"drug_era group during day -365 through 0 days relative to index: DRUGS FOR OBSTRUCTIVE AIRWAY DISEASES, drug_era group during day -30 through 0 days relative to index: DRUGS FOR OBSTRUCTIVE AIRWAY DISEASES, drug_era group during day 0 through 0 days relative to index: DRUGS FOR OBSTRUCTIVE AIRWAY DISEASES",Table 3
+"drug_era group during day -365 through 0 days relative to index: DRUGS USED IN DIABETES, drug_era group during day -30 through 0 days relative to index: DRUGS USED IN DIABETES, drug_era group during day 0 through 0 days relative to index: DRUGS USED IN DIABETES",Table 3
+"drug_era group during day -30 through 0 days relative to index: INSULINS AND ANALOGUES
+drug_era group during day -365 through 0 days relative to index: INSULINS AND ANALOGUES
+drug_era group during day 0 through 0 days relative to index: INSULINS AND ANALOGUES",Table 3
+"drug_era group during day -365 through 0 days relative to index: IMMUNOSUPPRESSANTS, drug_era group during day -30 through 0 days relative to index: IMMUNOSUPPRESSANTS, drug_era group during day 0 through 0 days relative to index: IMMUNOSUPPRESSANTS",Table 3
+"drug_era group during day -365 through 0 days relative to index: LIPID MODIFYING AGENTS, drug_era group during day -30 through 0 days relative to index: LIPID MODIFYING AGENTS, drug_era group during day 0 through 0 days relative to index: LIPID MODIFYING AGENTS",Table 3
+"drug_era group during day -365 through 0 days relative to index: OPIOIDS, drug_era group during day -30 through 0 days relative to index: OPIOIDS, drug_era group during day 0 through 0 days relative to index: OPIOIDS",Table 3
+"drug_era group during day -365 through 0 days relative to index: PSYCHOLEPTICS, drug_era group during day -30 through 0 days relative to index: PSYCHOLEPTICS, drug_era group during day 0 through 0 days relative to index: PSYCHOLEPTICS",Table 3
+"drug_era group during day -365 through 0 days relative to index: PSYCHOSTIMULANTS, AGENTS USED FOR ADHD AND NOOTROPICS, drug_era group during day -30 through 0 days relative to index: PSYCHOSTIMULANTS, AGENTS USED FOR ADHD AND NOOTROPICS, drug_era group during day 0 through 0 days relative to index: PSYCHOSTIMULANTS, AGENTS USED FOR ADHD AND NOOTROPICS",Table 3
+"drug_era group during day -365 through 0 days relative to index: IMMUNOGLOBULINS, drug_era group during day -30 through 0 days relative to index: IMMUNOGLOBULINS, drug_era group during day 0 through 0 days relative to index: IMMUNOGLOBULINS",Table 3
+"drug_era group during day -365 through 0 days relative to index: Hydrochlorothiazide, drug_era group during day -365 through 0 days relative to index: Furosemide",Table 3
