@@ -14,6 +14,432 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Generation additional table 1
+#' @export
+additionalTable1 <- function(connectionDetails = connectionDetails,
+                             cdmDatabaseSchema = cdmDatabaseSchema,
+                             cohortDatabaseSchema = cohortDatabaseSchema,
+                             cohortTable = cohortTable,
+                             oracleTempSchema = oracleTempSchema,
+                             outputFolder = outputFolder,
+                             databaseId = databaseId,
+                             minCellCount = 10){
+  start <- Sys.time()
+  
+  pathToCsv <- system.file("settings", "CohortsToCreateInfluenza.csv", package = "InfluenzaHospCohortDiag")
+  cohortsToCreate <- read.csv(pathToCsv)
+  
+  exportFolder <- file.path(outputFolder, "diagnosticsExport")
+  if (!file.exists(exportFolder)) {
+    dir.create(exportFolder, recursive = TRUE)
+  }
+  
+  #Defining concept IDs
+  conditionGroupConceptIds <- c(439777, #Anemia
+                                4212540, #Chronic liver disease
+                                201820, #Diabetes mellitus
+                                435216, #Disorder due to type 1 diabetes mellitus
+                                443732, #Disorder due to type 2 diabetes mellitus
+                                318800, #Gastroesophageal reflux disease
+                                192671, #Gastrointestinal hemorrhage
+                                4030518, #Renal impairment
+                                193782, #End-stage renal disease
+                                439727, #Human immunodeficiency virus infection
+                                432867, #Hyperlipidemia
+                                80180, #Osteoarthritis
+                                433740, #Immunodeficiency disorder
+                                4291005, #Viral hepatitis
+                                197494, #Viral hepatitis C
+                                4281232, #Type B viral hepatitis
+                                380378, #Epilepsy
+                                313217, #Atrial fibrillation
+                                321319, #Cardiomyopathy
+                                381591, #Cerebrovascular disease
+                                317576, #Coronary arteriosclerosis
+                                321588, #Heart disease
+                                316139, #Heart failure
+                                316866, #Hypertensive disorder
+                                4185932, #Ischemic heart disease
+                                321052, #Peripheral vascular disease
+                                440417, #Pulmonary embolism
+                                444247, #Venous thrombosis
+                                438112, #Neoplastic disease
+                                443392, #Malignant neoplastic disease
+                                4147164, #Malignant tumor of lymphoid hemopoietic and related tissue
+                                432571, #Malignant lymphoma
+                                4044013, #Hematologic neoplasm
+                                4112853, #Malignant neoplasm of female breast
+                                36683531, #Malignant neoplasm of colon and/or rectum
+                                40493428, #Malignant neoplasm of respiratory system
+                                258369, #Primary malignant neoplasm of lung
+                                4128888, #Neoplasm of lung
+                                200962, #Primary malignant neoplasm of prostate
+                                444209, #Neoplasm of skin
+                                40491001, #Malignant neoplasm of digestive system
+                                443387, #Malignant neoplasm of stomach
+                                4111017, #Neoplasm of head and neck
+                                4181338, #Malignant tumor of oropharynx
+                                4154630, #Malignant neoplasm of genitourinary organ
+                                317009, #Asthma
+                                255573, #Chronic obstructive lung disease
+                                255841, #Chronic bronchitis
+                                261325, #Pulmonary emphysema
+                                441267, #Cystic fibrosis
+                                256449, #Bronchiectasis
+                                4119786, #Interstitial lung disease
+                                4322024, #Pulmonary hypertension
+                                140168, #Psoriasis
+                                80809, #Psoriasis
+                                255891, #Lupus erythematosus
+                                374919,
+                                4074815,
+                                201606,
+                                81893,
+                                4253901,
+                                4290976,
+                                4182210,
+                                438409,
+                                440383,
+                                435783,
+                                4279309,
+                                255848,
+                                81902
+  )
+  
+  drugGroupConceptIds <- c(21601822,
+                           21602796,
+                           21601964,
+                           21603126,
+                           21601782,
+                           21604389,
+                           21603932,
+                           21604889,
+                           21603929,
+                           21603898,
+                           21600663,
+                           21601387,
+                           21602028,
+                           21601664,
+                           21601744,
+                           21601461,
+                           21600046,
+                           21603248,
+                           21600712,
+                           21600713,
+                           21603890,
+                           21601853,
+                           21604254,
+                           21604489,
+                           21604752,
+                           21601254,
+                           21603907,
+                           21603914,
+                           21604686, #ANTIDEPRESSANTS
+                           21600960 #ANTITHROMBOTIC AGENTS
+  )
+  
+  drugIngredientConceptIds <- c(1777087,
+                                1305058,
+                                1101898,
+                                964339,
+                                40171288,
+                                1545958,
+                                1539403,
+                                1551860,
+                                1510813,
+                                1549686,
+                                1592085,
+                                40165636,
+                                1503297,
+                                1177480,
+                                1308842,
+                                1317640,
+                                40226742,
+                                1367500,
+                                1347384,
+                                1346686,
+                                1351557,
+                                40235485,
+                                1342439,
+                                1334456,
+                                1331235,
+                                1373225,
+                                1310756,
+                                1308216,
+                                1363749,
+                                1341927,
+                                1340128,
+                                1335471
+  )
+  
+  conditionGroupConceptIds <- c()
+  drugGroupConceptIds <- c()
+  drugIngredientConceptIds <- c()
+  
+  for( i in 1:nrow(cohortsToCreate)){
+    cohortName <- cohortsToCreate$name[i]
+    cohortId <- cohortsToCreate$cohortId[i]
+    
+    for(endDay in c(0,-1)){
+      tableSpecification <- setTableSpecification(useDemographicsGender = T,
+                                                  useDemographicsAge = T,
+                                                  useDemographicsAgeGroup = T,
+                                                  useDemographicsRace = T,
+                                                  useDemographicsEthnicity = T,
+                                                  useDemographicsIndexYear = T,
+                                                  useDemographicsIndexMonth = T,
+                                                  useDemographicsPriorObservationTime = FALSE,
+                                                  useDemographicsPostObservationTime = FALSE,
+                                                  useDemographicsTimeInCohort = FALSE,
+                                                  useDemographicsIndexYearMonth = T,
+                                                  conceptIdsConditionOccurrenceAnyTimePrior = c(),
+                                                  conceptIdsConditionOccurrenceLongTerm = c(),
+                                                  conceptIdsConditionOccurrenceMediumTerm = c(),
+                                                  conceptIdsConditionOccurrenceShortTerm = c(),
+                                                  conceptIdsConditionOccurrencePrimaryInpatientAnyTimePrior = c(),
+                                                  conceptIdsConditionOccurrencePrimaryInpatientLongTerm = c(),
+                                                  conceptIdsConditionOccurrencePrimaryInpatientMediumTerm = c(),
+                                                  conceptIdsConditionOccurrencePrimaryInpatientShortTerm = c(),
+                                                  conceptIdsConditionEraAnyTimePrior = c(),
+                                                  conceptIdsConditionEraLongTerm = c(),
+                                                  conceptIdsConditionEraMediumTerm = c(),
+                                                  conceptIdsConditionEraShortTerm = c(),
+                                                  conceptIdsConditionEraOverlapping = c(),
+                                                  conceptIdsConditionEraStartLongTerm = c(),
+                                                  conceptIdsConditionEraStartMediumTerm = c(),
+                                                  conceptIdsConditionEraStartShortTerm = c(),
+                                                  conceptIdsConditionGroupEraAnyTimePrior = conditionGroupConceptIds,
+                                                  conceptIdsConditionGroupEraLongTerm = conditionGroupConceptIds,
+                                                  conceptIdsConditionGroupEraMediumTerm = conditionGroupConceptIds,
+                                                  conceptIdsConditionGroupEraShortTerm = conditionGroupConceptIds,
+                                                  conceptIdsConditionGroupEraOverlapping = c(),
+                                                  conceptIdsConditionGroupEraStartLongTerm = c(),
+                                                  conceptIdsConditionGroupEraStartMediumTerm = c(),
+                                                  conceptIdsConditionGroupEraStartShortTerm = c(),
+                                                  conceptIdsDrugExposureAnyTimePrior = c(),
+                                                  conceptIdsDrugExposureLongTerm = c(),
+                                                  conceptIdsDrugExposureMediumTerm = c(),
+                                                  conceptIdsDrugExposureShortTerm = c(),
+                                                  conceptIdsDrugEraAnyTimePrior = drugIngredientConceptIds,
+                                                  conceptIdsDrugEraLongTerm = drugIngredientConceptIds,
+                                                  conceptIdsDrugEraMediumTerm = drugIngredientConceptIds,
+                                                  conceptIdsDrugEraShortTerm = drugIngredientConceptIds,
+                                                  conceptIdsDrugEraOverlapping = c(),
+                                                  conceptIdsDrugEraStartLongTerm = c(),
+                                                  conceptIdsDrugEraStartMediumTerm = c(),
+                                                  conceptIdsDrugEraStartShortTerm = c(),
+                                                  conceptIdsDrugGroupEraAnyTimePrior = drugGroupConceptIds,
+                                                  conceptIdsDrugGroupEraLongTerm = drugGroupConceptIds,
+                                                  conceptIdsDrugGroupEraMediumTerm = drugGroupConceptIds,
+                                                  conceptIdsDrugGroupEraShortTerm = drugGroupConceptIds,
+                                                  conceptIdsDrugGroupEraOverlapping = c(),
+                                                  conceptIdsDrugGroupEraStartLongTerm = c(),
+                                                  conceptIdsDrugGroupEraStartMediumTerm = c(),
+                                                  conceptIdsDrugGroupEraStartShortTerm = c(),
+                                                  conceptIdsProcedureOccurrenceAnyTimePrior = c(),
+                                                  conceptIdsProcedureOccurrenceLongTerm = c(),
+                                                  conceptIdsProcedureOccurrenceMediumTerm = c(),
+                                                  conceptIdsProcedureOccurrenceShortTerm = c(),
+                                                  conceptIdsDeviceExposureAnyTimePrior = c(),
+                                                  conceptIdsDeviceExposureLongTerm = c(),
+                                                  conceptIdsDeviceExposureMediumTerm = c(),
+                                                  conceptIdsDeviceExposureShortTerm = c(),
+                                                  conceptIdsMeasurementAnyTimePrior = c(),
+                                                  conceptIdsMeasurementLongTerm = c(),
+                                                  conceptIdsMeasurementMediumTerm = c(),
+                                                  conceptIdsMeasurementShortTerm = c(),
+                                                  conceptIdsMeasurementValueAnyTimePrior = c(),
+                                                  conceptIdsMeasurementValueLongTerm = c(),
+                                                  conceptIdsMeasurementValueMediumTerm = c(),
+                                                  conceptIdsMeasurementValueShortTerm = c(),
+                                                  conceptIdsMeasurementRangeGroupAnyTimePrior = c(),
+                                                  conceptIdsMeasurementRangeGroupLongTerm = c(),
+                                                  conceptIdsMeasurementRangeGroupMediumTerm = c(),
+                                                  conceptIdsMeasurementRangeGroupShortTerm = c(),
+                                                  conceptIdsObservationAnyTimePrior = c(),
+                                                  conceptIdsObservationLongTerm = c(),
+                                                  conceptIdsObservationMediumTerm = c(),
+                                                  conceptIdsObservationShortTerm = c(),
+                                                  useCharlsonIndex = T,
+                                                  useDcsi = FALSE,
+                                                  useChads2 = FALSE,
+                                                  useChads2Vasc = FALSE,
+                                                  useHfrs = T,#T,
+                                                  useDistinctConditionCountLongTerm = FALSE,
+                                                  useDistinctConditionCountMediumTerm = FALSE,
+                                                  useDistinctConditionCountShortTerm = FALSE,
+                                                  useDistinctIngredientCountLongTerm = FALSE,
+                                                  useDistinctIngredientCountMediumTerm = FALSE,
+                                                  useDistinctIngredientCountShortTerm = FALSE,
+                                                  useDistinctProcedureCountLongTerm = FALSE,
+                                                  useDistinctProcedureCountMediumTerm = FALSE,
+                                                  useDistinctProcedureCountShortTerm = FALSE,
+                                                  useDistinctMeasurementCountLongTerm = FALSE,
+                                                  useDistinctMeasurementCountMediumTerm = FALSE,
+                                                  useDistinctMeasurementCountShortTerm = FALSE,
+                                                  useDistinctObservationCountLongTerm = FALSE,
+                                                  useDistinctObservationCountMediumTerm = FALSE,
+                                                  useDistinctObservationCountShortTerm = FALSE,
+                                                  useVisitCountLongTerm = T,
+                                                  useVisitCountMediumTerm = T,
+                                                  useVisitCountShortTerm = T,
+                                                  useVisitConceptCountLongTerm = T,
+                                                  useVisitConceptCountMediumTerm = T,
+                                                  useVisitConceptCountShortTerm = T,
+                                                  longTermStartDays = -365,
+                                                  mediumTermStartDays = -180,
+                                                  shortTermStartDays = -30,
+                                                  endDays = endDay) #you can try diverse time settings
+      tryCatch({
+        comparativeCharacterization(connectionDetails = connectionDetails,
+                                    cdmDatabaseSchema = cdmDatabaseSchema,
+                                    cohortDatabaseSchema = cohortDatabaseSchema,
+                                    cohortTable = cohortTable,
+                                    oracleTempSchema = oracleTempSchema,
+                                    outputFolder = outputFolder,
+                                    minCellCount = minCellCount,
+                                    targetCohortId = cohortId,
+                                    comparatorCohortId = NULL,#7,
+                                    outcomeCohortIds = NULL,
+                                    tableSpecification = tableSpecification,
+                                    sampleSize = NULL,
+                                    output = "one column",
+                                    percentDigits = 1, 
+                                    valueDigits = 1,
+                                    stdDiffDigits = 2,
+                                    studyPopulationSetting = NULL,
+                                    fileName = file.path(exportFolder, sprintf("base_char_cohortId%s_until%s.csv",cohortId, endDay)))
+      },
+      error = function(e) {
+        ParallelLogger::logTrace(paste0(sprinf("Generating table 1 for cohort ID %s is failed. The error message:", cohortId), e))},
+      finally = {
+        ParallelLogger::logTrace('Done.')})
+      
+    }
+    
+  }
+  # Add all to zip file -------------------------------------------------------------------------------
+  ParallelLogger::logInfo("Adding results to zip file")
+  zipName <- file.path(exportFolder, paste0("Results_", databaseId, ".zip"))
+  files <- list.files(exportFolder, pattern = ".*\\.csv$")
+  oldWd <- setwd(exportFolder)
+  on.exit(setwd(oldWd), add = TRUE)
+  DatabaseConnector::createZipFile(zipFile = zipName, files = files)
+  ParallelLogger::logInfo("Results are ready for sharing at:", zipName)
+  
+  delta <- Sys.time() - start
+  ParallelLogger::logInfo(paste("Generating additional table 1 took",
+                                signif(delta, 3),
+                                attr(delta, "units")))
+  
+  
+}
+
+
+#' Comparative Characterization
+#'
+#' @details
+#' This function create the comparative table 1 for target and comparator
+#'
+#' @export
+comparativeCharacterization <- function(connectionDetails,
+                                        cdmDatabaseSchema,
+                                        cohortDatabaseSchema = cdmDatabaseSchema,
+                                        cohortTable = "cohort",
+                                        oracleTempSchema = NULL,
+                                        outputFolder,
+                                        minCellCount = 0,
+                                        targetCohortId,
+                                        comparatorCohortId = NULL,
+                                        outcomeCohortIds = NULL,
+                                        tableSpecification = setTableSpecification(),
+                                        sampleSize = NULL,
+                                        output = "one column",
+                                        percentDigits = 1, 
+                                        valueDigits = 1,
+                                        stdDiffDigits = 2,
+                                        studyPopulationSetting = NULL,
+                                        fileName = NULL){
+  if (!file.exists(outputFolder))
+    dir.create(outputFolder, recursive = TRUE)
+  if (!is.null(getOption("fftempdir")) && !file.exists(getOption("fftempdir"))) {
+    warning("fftempdir '", getOption("fftempdir"), "' not found. Attempting to create folder")
+    dir.create(getOption("fftempdir"), recursive = TRUE)
+  }
+  
+  ParallelLogger::addDefaultFileLogger(file.path(outputFolder, "log.txt"))
+  
+  if(is.null(outcomeCohortIds)){
+    targetCovData <- FeatureExtraction::getDbCovariateData(connectionDetails = connectionDetails,
+                                                           cdmDatabaseSchema = cdmDatabaseSchema,
+                                                           cohortDatabaseSchema = cohortDatabaseSchema,
+                                                           cohortTable = cohortTable,
+                                                           cohortId = targetCohortId,
+                                                           rowIdField = "subject_id",
+                                                           covariateSettings = tableSpecification$covariateSetting,
+                                                           aggregated = F)
+    targetCovAggData <- FeatureExtraction::aggregateCovariates(targetCovData)
+    ParallelLogger::logInfo(sprintf("Covariates for target Id %s are extracted", targetCohortId))
+    
+    if(!is.null(comparatorCohortId)){
+      comparatorCovData <- FeatureExtraction::getDbCovariateData(connectionDetails = connectionDetails,
+                                                                 cdmDatabaseSchema = cdmDatabaseSchema,
+                                                                 cohortDatabaseSchema = cohortDatabaseSchema,
+                                                                 cohortTable = cohortTable,
+                                                                 cohortId = comparatorCohortId,
+                                                                 rowIdField = "subject_id",
+                                                                 covariateSettings = tableSpecification$covariateSetting,
+                                                                 aggregated = F)
+      comparatorCovAggData <- FeatureExtraction::aggregateCovariates(comparatorCovData)
+      ParallelLogger::logInfo(sprintf("Covariates for comparator Id %s are extracted", comparatorCohortId))
+      
+    }else {
+      comparatorCovData <- NULL
+      comparatorCovAggData <- NULL
+    }
+    table1 <- createTable1(targetCovAggData,
+                           comparatorCovAggData,
+                           specification = tableSpecification$tableSpec,
+                           output = "one column",
+                           showCounts = TRUE,
+                           showPercent = TRUE,
+                           percentDigits = 1, 
+                           valueDigits = 1,
+                           stdDiffDigits = 2)
+    if(!is.null(fileName)){
+      write.csv(table1,fileName)
+      ParallelLogger::logInfo(sprintf("Table 1 is saved in %s", fileName))
+    }
+    
+    
+  }else{
+    stop("currently, stratification on outcome Id or incidence calculation is not supported")
+  }
+  
+  
+}
+
+# restricts to pop and saves/creates mapping
+mapCovariates <- function(plpData,
+                          population){
+  covariates = plpData$covariates
+  covariateRef = plpData$covariateRef
+  
+  # restrict to population stratified by outcomes
+  ParallelLogger::logTrace('restricting to population according to the outcome status...')
+  idx <- ffbase::ffmatch(x = covariates$rowId, table = ff::as.ff(population$rowId))
+  idx <- ffbase::ffwhich(idx, !is.na(idx))
+  covariates <- covariates[idx, ]
+  
+  covariateData = list(covariates = covariates,
+                       covariateRef = covariateRef,
+                       timeRef = plpData$timeRef,
+                       analysisRef = plpData$analysisRef,
+                       metaData = plpData$metaData)
+  class (covariateData) = "covariateData"
+  return(covariateData)
+}
+
 #' Set the setting for the table 1
 #'
 #' @details
@@ -932,5 +1358,468 @@ setTableSpecification <- function(useDemographicsGender = FALSE,
   result <- list(tableSpec = tableSpec, covariateSetting = covariateSetting)
   class(result) <- "tableSpecification"
   
+  return(result)
+}
+
+#' Create a table 1
+#'
+#' @description
+#' Creates a formatted table of cohort characteristics, to be included in publications or reports.
+#' Allows for creating a table describing a single cohort, or a table comparing two cohorts.
+#'
+#' @param covariateData1   The covariate data of the cohort to be included in the table.
+#' @param covariateData2   The covariate data of the cohort to also be included, when comparing two
+#'                         cohorts.
+#' @param specifications   Specifications of which covariates to display, and how.
+#' @param output           The output format for the table. Options are \code{output = "two columns"},
+#'                         \code{output = "one column"}, or \code{output = "list"}.
+#' @param showCounts       Show the number of cohort entries having the binary covariate?
+#' @param showPercent      Show the percentage of cohort entries having the binary covariate?
+#' @param percentDigits    Number of digits to be used for percentages.
+#' @param stdDiffDigits    Number of digits to be used for the standardized differences.
+#' @param valueDigits    Number of digits to be used for the values of continuous variables.
+#' 
+#' @return
+#' A data frame, or, when \code{output = "list"} a list of two data frames.
+#'
+#' @export
+createTable1 <- function(covariateData1,
+                         covariateData2 = NULL,
+                         specifications = getDefaultTable1Specifications(),
+                         output = "two columns",
+                         showCounts = FALSE,
+                         showPercent = TRUE,
+                         percentDigits = 1,
+                         valueDigits = 1,
+                         stdDiffDigits = 2) {
+  comparison <- !is.null(covariateData2)
+  if (!is(covariateData1, "covariateData")) {
+    stop("covariateData1 is not of type 'covariateData'")
+  }
+  if (comparison && !is(covariateData2, "covariateData")) {
+    stop("covariateData2 is not of type 'covariateData'")
+  }
+  if (is.null(covariateData1$covariatesContinuous) && is.null(covariateData1$covariates$averageValue)) {
+    stop("Covariate1 data is not aggregated")
+  }
+  if (comparison && is.null(covariateData2$covariatesContinuous) && is.null(covariateData2$covariates$averageValue)) {
+    stop("Covariate2 data is not aggregated")
+  }
+  if (!showCounts && !showPercent) {
+    stop("Must show counts or percent, or both")
+  }
+  
+  fixCase <- function(label) {
+    idx <- (toupper(label) == label)
+    if (any(idx)) {
+      label[idx] <- paste0(substr(label[idx], 1, 1),
+                           tolower(substr(label[idx], 2, nchar(label[idx]))))
+    }
+    return(label)
+  }
+  
+  formatCount <- function(x) {
+    result <- format(round(x), justify = "right", big.mark = ",")
+    result <- gsub("NA", "", result)
+    result <- gsub(" ", " ", result)
+    return(result)
+  }
+  
+  formatPercent <- function(x) {
+    result <- format(round(100*x, percentDigits), digits = percentDigits + 1, justify = "right")
+    result <- gsub("NA", "", result)
+    result <- gsub(" ", " ", result)
+    return(result)
+  }
+  
+  formatStdDiff <- function(x) {
+    result <- format(round(x, stdDiffDigits), digits = stdDiffDigits + 1, justify = "right")
+    result <- gsub("NA", "", result)
+    result <- gsub(" ", " ", result)
+    return(result)
+  }
+  
+  formatValue <- function(x) {
+    return(format(round(x, valueDigits), nsmall = valueDigits))
+  }
+  
+  if (is.null(covariateData1$covariates)) {
+    covariates <- NULL
+  } else {
+    covariates <- as.data.frame(ff::as.ram(covariateData1$covariates[, c("covariateId", "sumValue", "averageValue")]))
+    colnames(covariates) <- c("covariateId", "count1", "percent1")
+    covariates$count1 <- formatCount(covariates$count1)
+    covariates$percent1 <- formatPercent(covariates$percent1)
+  }
+  if (is.null(covariateData1$covariatesContinuous)) {
+    covariatesContinuous <- NULL
+  } else {
+    covariatesContinuous <- as.data.frame(ff::as.ram(covariateData1$covariatesContinuous[, c("covariateId",
+                                                                                             "averageValue",
+                                                                                             "standardDeviation",
+                                                                                             "minValue",
+                                                                                             "p25Value",
+                                                                                             "medianValue",
+                                                                                             "p75Value",
+                                                                                             "maxValue")]))
+    colnames(covariatesContinuous) <- c("covariateId",
+                                        "averageValue1",
+                                        "standardDeviation1",
+                                        "minValue1",
+                                        "p25Value1",
+                                        "medianValue1",
+                                        "p75Value1",
+                                        "maxValue1")
+    covariatesContinuous$averageValue1 <- formatValue(covariatesContinuous$averageValue1)
+    covariatesContinuous$standardDeviation1 <- formatValue(covariatesContinuous$standardDeviation1)
+    covariatesContinuous$minValue1 <- formatValue(covariatesContinuous$minValue1)
+    covariatesContinuous$p25Value1 <- formatValue(covariatesContinuous$p25Value1)
+    covariatesContinuous$medianValue1 <- formatValue(covariatesContinuous$medianValue1)
+    covariatesContinuous$p75Value1 <- formatValue(covariatesContinuous$p75Value1)
+    covariatesContinuous$maxValue1 <- formatValue(covariatesContinuous$maxValue1)
+  }
+  
+  covariateRef <- ff::as.ram(covariateData1$covariateRef)
+  analysisRef <- ff::as.ram(covariateData1$analysisRef)
+  if (comparison) {
+    stdDiff <- FeatureExtraction::computeStandardizedDifference(covariateData1, covariateData2)
+    if (!is.null(covariateData1$covariates) && !is.null(covariateData2$covariates)) {
+      tempCovariates <- ff::as.ram(covariateData2$covariates[, c("covariateId", "sumValue", "averageValue")])
+      colnames(tempCovariates) <- c("covariateId", "count2", "percent2")
+      tempCovariates$count2 <- formatCount(tempCovariates$count2)
+      tempCovariates$percent2 <- formatPercent(tempCovariates$percent2)
+      covariates <- merge(covariates, tempCovariates, all = TRUE)
+      covariates$count1[is.na(covariates$count1)] <- " 0"
+      covariates$count2[is.na(covariates$count2)] <- " 0"
+      covariates$percent1[is.na(covariates$percent1)] <- " 0"
+      covariates$percent2[is.na(covariates$percent2)] <- " 0"
+      covariates <- merge(covariates, stdDiff[, c("covariateId", "stdDiff")])
+      covariates$stdDiff <- formatStdDiff(covariates$stdDiff)
+    }
+    if (!is.null(covariatesContinuous)) {
+      tempCovariates <- as.data.frame(ff::as.ram(covariateData2$covariatesContinuous[, c("covariateId",
+                                                                                         "averageValue",
+                                                                                         "standardDeviation",
+                                                                                         "minValue",
+                                                                                         "p25Value",
+                                                                                         "medianValue",
+                                                                                         "p75Value",
+                                                                                         "maxValue")]))
+      colnames(tempCovariates) <- c("covariateId",
+                                    "averageValue2",
+                                    "standardDeviation2",
+                                    "minValue2",
+                                    "p25Value2",
+                                    "medianValue2",
+                                    "p75Value2",
+                                    "maxValue2")
+      tempCovariates$averageValue2 <- formatValue(tempCovariates$averageValue2)
+      tempCovariates$standardDeviation2 <- formatValue(tempCovariates$standardDeviation2)
+      tempCovariates$minValue2 <- formatValue(tempCovariates$minValue2)
+      tempCovariates$p25Value2 <- formatValue(tempCovariates$p25Value2)
+      tempCovariates$medianValue2 <- formatValue(tempCovariates$medianValue2)
+      tempCovariates$p75Value2 <- formatValue(tempCovariates$p75Value2)
+      tempCovariates$maxValue2 <- formatValue(tempCovariates$maxValue2)
+      covariatesContinuous <- merge(covariatesContinuous, tempCovariates, all = TRUE)
+      covariatesContinuous$averageValue1[is.na(covariatesContinuous$averageValue1)] <- "  "
+      covariatesContinuous$standardDeviation1[is.na(covariatesContinuous$standardDeviation1)] <- "  "
+      covariatesContinuous$minValue1[is.na(covariatesContinuous$minValue1)] <- "  "
+      covariatesContinuous$p25Value1[is.na(covariatesContinuous$p25Value1)] <- "  "
+      covariatesContinuous$medianValue1[is.na(covariatesContinuous$medianValue1)] <- "  "
+      covariatesContinuous$p75Value1[is.na(covariatesContinuous$p75Value1)] <- "  "
+      covariatesContinuous$maxValue1[is.na(covariatesContinuous$maxValue1)] <- "  "
+      covariatesContinuous$averageValue2[is.na(covariatesContinuous$averageValue2)] <- "  "
+      covariatesContinuous$standardDeviation2[is.na(covariatesContinuous$standardDeviation2)] <- "  "
+      covariatesContinuous$minValue2[is.na(covariatesContinuous$minValue2)] <- "  "
+      covariatesContinuous$p25Value2[is.na(covariatesContinuous$p25Value2)] <- "  "
+      covariatesContinuous$medianValue2[is.na(covariatesContinuous$medianValue2)] <- "  "
+      covariatesContinuous$p75Value2[is.na(covariatesContinuous$p75Value2)] <- "  "
+      covariatesContinuous$maxValue2[is.na(covariatesContinuous$maxValue2)] <- "  "
+      covariatesContinuous <- merge(covariatesContinuous, stdDiff[, c("covariateId", "stdDiff")])
+      covariatesContinuous$stdDiff <- formatStdDiff(covariatesContinuous$stdDiff)
+    }
+    idx <- !ffbase::`%in%`(covariateData2$covariateRef$covariateId,
+                           covariateData1$covariateRef$covariateId)
+    if (ffbase::any.ff(idx)) {
+      covariateRef <- rbind(covariateRef, ff::as.ram(covariateData2$covariateRef[idx, ]))
+    }
+  } else {
+    covariates$count2 <- " 0"
+    covariates$percent2 <- " 0"
+    covariates$stdDiff <- " 0"
+    covariatesContinuous$averageValue2 <- "  "
+    covariatesContinuous$standardDeviation2 <- "  "
+    covariatesContinuous$minValue2 <- "  "
+    covariatesContinuous$p25Value2 <- "  "
+    covariatesContinuous$medianValue2 <- "  "
+    covariatesContinuous$p75Value2 <- "  "
+    covariatesContinuous$maxValue2 <- "  "
+    covariatesContinuous$stdDiff <- "  "
+  }
+  
+  binaryTable <- data.frame()
+  continuousTable <- data.frame()
+  for (i in 1:nrow(specifications)) {
+    if (specifications$analysisId[i] == "") {
+      binaryTable <- rbind(binaryTable,
+                           data.frame(Characteristic = specifications$label[i], value = ""))
+    } else {
+      idx <- analysisRef$analysisId == specifications$analysisId[i]
+      if (any(idx)) {
+        isBinary <- analysisRef$isBinary[idx]
+        covariateIds <- NULL
+        if (isBinary == "Y") {
+          # Binary
+          if (specifications$covariateIds[i] == "") {
+            idx <- covariateRef$analysisId == specifications$analysisId[i]
+          } else {
+            covariateIds <- as.numeric(strsplit(specifications$covariateIds[i], ",")[[1]])
+            idx <- covariateRef$covariateId %in% covariateIds
+          }
+          if (any(idx)) {
+            covariateRefSubset <- covariateRef[idx, ]
+            covariatesSubset <- merge(covariates, covariateRefSubset)
+            if (is.null(covariateIds)) {
+              covariatesSubset <- covariatesSubset[order(covariatesSubset$covariateId), ]
+            } else {
+              covariatesSubset <- merge(covariatesSubset, data.frame(covariateId = covariateIds,
+                                                                     rn = 1:length(covariateIds)))
+              covariatesSubset <- covariatesSubset[order(covariatesSubset$rn,
+                                                         covariatesSubset$covariateId), ]
+            }
+            covariatesSubset$covariateName <- fixCase(gsub("^.*: ",
+                                                           "",
+                                                           covariatesSubset$covariateName))
+            if (specifications$covariateIds[i] == "" || length(covariateIds) > 1) {
+              binaryTable <- rbind(binaryTable, data.frame(Characteristic = specifications$label[i],
+                                                           count1 = "",
+                                                           percent1 = "",
+                                                           count2 = "",
+                                                           percent2 = "",
+                                                           stdDiff = "",
+                                                           stringsAsFactors = FALSE))
+              binaryTable <- rbind(binaryTable,
+                                   data.frame(Characteristic = paste0("  ", covariatesSubset$covariateName),
+                                              count1 = covariatesSubset$count1,
+                                              percent1 = covariatesSubset$percent1,
+                                              count2 = covariatesSubset$count2,
+                                              percent2 = covariatesSubset$percent2,
+                                              stdDiff = covariatesSubset$stdDiff,
+                                              stringsAsFactors = FALSE))
+            } else {
+              binaryTable <- rbind(binaryTable, data.frame(Characteristic = specifications$label[i],
+                                                           count1 = covariatesSubset$count1,
+                                                           percent1 = covariatesSubset$percent1,
+                                                           count2 = covariatesSubset$count2,
+                                                           percent2 = covariatesSubset$percent2,
+                                                           stdDiff = covariatesSubset$stdDiff,
+                                                           stringsAsFactors = FALSE))
+            }
+          }
+        } else {
+          # Not binary
+          if (specifications$covariateIds[i] == "") {
+            idx <- covariateRef$analysisId == specifications$analysisId[i]
+          } else {
+            covariateIds <- as.numeric(strsplit(specifications$covariateIds[i], ",")[[1]])
+            idx <- covariateRef$covariateId %in% covariateIds
+          }
+          if (any(idx)) {
+            covariateRefSubset <- covariateRef[idx, ]
+            covariatesSubset <- covariatesContinuous[covariatesContinuous$covariateId %in% covariateRefSubset$covariateId, ]
+            covariatesSubset <- merge(covariatesSubset, covariateRefSubset)
+            if (is.null(covariateIds)) {
+              covariatesSubset <- covariatesSubset[order(covariatesSubset$covariateId), ]
+            } else {
+              covariatesSubset <- merge(covariatesSubset, data.frame(covariateId = covariateIds,
+                                                                     rn = 1:length(covariateIds)))
+              covariatesSubset <- covariatesSubset[order(covariatesSubset$rn,
+                                                         covariatesSubset$covariateId), ]
+            }
+            covariatesSubset$covariateName <- fixCase(gsub("^.*: ",
+                                                           "",
+                                                           covariatesSubset$covariateName))
+            if (specifications$covariateIds[i] == "" || length(covariateIds) > 1) {
+              continuousTable <- rbind(continuousTable,
+                                       data.frame(Characteristic = specifications$label[i],
+                                                  value1 = "",
+                                                  value2 = "",
+                                                  stdDiff = "",
+                                                  stringsAsFactors = FALSE))
+              for (j in 1:nrow(covariatesSubset)) {
+                continuousTable <- rbind(continuousTable,
+                                         data.frame(Characteristic = paste0("  ", covariatesSubset$covariateName[j]),
+                                                    value1 = "",
+                                                    value2 = "",
+                                                    stdDiff = "",
+                                                    stringsAsFactors = FALSE))
+                continuousTable <- rbind(continuousTable, data.frame(Characteristic = c("    Mean",
+                                                                                        "    Std. deviation",
+                                                                                        "    Minimum",
+                                                                                        "    25th percentile",
+                                                                                        "    Median",
+                                                                                        "    75th percentile",
+                                                                                        "    Maximum"),
+                                                                     value1 = c(covariatesSubset$averageValue1[j],
+                                                                                covariatesSubset$standardDeviation1[j],
+                                                                                covariatesSubset$minValue1[j],
+                                                                                covariatesSubset$p25Value1[j],
+                                                                                covariatesSubset$medianValue1[j],
+                                                                                covariatesSubset$p75Value1[j],
+                                                                                covariatesSubset$maxValue1[j]),
+                                                                     value2 = c(covariatesSubset$averageValue2[j],
+                                                                                covariatesSubset$standardDeviation2[j],
+                                                                                covariatesSubset$minValue2[j],
+                                                                                covariatesSubset$p25Value2[j],
+                                                                                covariatesSubset$medianValue2[j],
+                                                                                covariatesSubset$p75Value2[j],
+                                                                                covariatesSubset$maxValue2[j]),
+                                                                     stdDiff = c(covariatesSubset$stdDiff[j],
+                                                                                 "  ",
+                                                                                 "  ",
+                                                                                 "  ",
+                                                                                 "  ",
+                                                                                 "  ",
+                                                                                 "  "),
+                                                                     stringsAsFactors = FALSE))
+                
+              }
+            } else {
+              continuousTable <- rbind(continuousTable,
+                                       data.frame(Characteristic = specifications$label[i],
+                                                  value1 = "",
+                                                  value2 = "",
+                                                  stdDiff = "",
+                                                  stringsAsFactors = FALSE))
+              continuousTable <- rbind(continuousTable, data.frame(Characteristic = c("    Mean",
+                                                                                      "    Std. deviation",
+                                                                                      "    Minimum",
+                                                                                      "    25th percentile",
+                                                                                      "    Median",
+                                                                                      "    75th percentile",
+                                                                                      "    Maximum"),
+                                                                   value1 = c(covariatesSubset$averageValue1,
+                                                                              covariatesSubset$standardDeviation1,
+                                                                              covariatesSubset$minValue1,
+                                                                              covariatesSubset$p25Value1,
+                                                                              covariatesSubset$medianValue1,
+                                                                              covariatesSubset$p75Value1,
+                                                                              covariatesSubset$maxValue1),
+                                                                   value2 = c(covariatesSubset$averageValue2,
+                                                                              covariatesSubset$standardDeviation2,
+                                                                              covariatesSubset$minValue2,
+                                                                              covariatesSubset$p25Value2,
+                                                                              covariatesSubset$medianValue2,
+                                                                              covariatesSubset$p75Value2,
+                                                                              covariatesSubset$maxValue2),
+                                                                   stdDiff = c(covariatesSubset$stdDiff,
+                                                                               "  ",
+                                                                               "  ",
+                                                                               "  ",
+                                                                               "  ",
+                                                                               "  ",
+                                                                               "  "),
+                                                                   stringsAsFactors = FALSE))
+            }
+          }
+        }
+      }
+    }
+  }
+  if (nrow(continuousTable) != 0) {
+    if (showCounts && showPercent) {
+      if (comparison) {
+        continuousTable$dummy1 <- ""
+        continuousTable$dummy2 <- ""
+        continuousTable <- continuousTable[, c(1, 5, 2, 6, 3, 4)]
+        colnames(continuousTable) <- c("Characteristic", "", "Value", "", "Value", "Std.Diff")
+      } else {
+        continuousTable$dummy <- ""
+        continuousTable <- continuousTable[, c(1,3,2)]
+        colnames(continuousTable) <- c("Characteristic", "", "Value")
+      }
+    } else {
+      if (comparison) {
+        colnames(continuousTable) <- c("Characteristic", "Value", "Value", "Std.Diff")
+      }  else {
+        continuousTable$value2 <- NULL
+        continuousTable$stdDiff <- NULL
+        colnames(continuousTable) <- c("Characteristic", "Value")
+      }
+    }
+  }
+  
+  if (nrow(binaryTable) != 0) {
+    if (comparison) {
+      colnames(binaryTable) <- c("Characteristic",
+                                 "Count",
+                                 paste0("% (n = ",
+                                        formatCount(covariateData1$metaData$populationSize),
+                                        ")"),
+                                 "Count",
+                                 paste0("% (n = ",
+                                        formatCount(covariateData2$metaData$populationSize),
+                                        ")"),
+                                 "Std.Diff")
+      if (!showCounts) {
+        binaryTable[, 4] <- NULL
+        binaryTable[, 2] <- NULL
+      }
+      if (!showPercent) {
+        binaryTable[, 5] <- NULL
+        binaryTable[, 3] <- NULL
+      }
+    } else {
+      binaryTable$count2 <- NULL
+      binaryTable$percent2 <- NULL
+      binaryTable$stdDiff <- NULL
+      colnames(binaryTable) <- c("Characteristic",
+                                 "Count",
+                                 paste0("% (n = ",
+                                        formatCount(covariateData1$metaData$populationSize),
+                                        ")"))
+      if (!showCounts) {
+        binaryTable[, 2] <- NULL
+      }
+      if (!showPercent) {
+        binaryTable[, 3] <- NULL
+      }
+    }
+  }
+  
+  if (output == "two columns") {
+    if (nrow(binaryTable) > nrow(continuousTable)) {
+      if (nrow(continuousTable) > 0) {
+        rowsPerColumn <- ceiling((nrow(binaryTable) + nrow(continuousTable) + 2)/2)
+        column1 <- binaryTable[1:rowsPerColumn, ]
+        ct <- continuousTable
+        colnames(ct) <- colnames(binaryTable)
+        column2 <- rbind(binaryTable[(rowsPerColumn + 1):nrow(binaryTable),
+                                     ],
+                         rep("", ncol(binaryTable)),
+                         colnames(continuousTable),
+                         ct)
+      } else {
+        rowsPerColumn <- ceiling((nrow(binaryTable) + nrow(continuousTable))/2)
+        column1 <- binaryTable[1:rowsPerColumn, ]
+        column2 <- binaryTable[(rowsPerColumn + 1):nrow(binaryTable), ]
+      }
+      if (nrow(column1) > nrow(column2)) {
+        column2 <- rbind(column2, rep("", ncol(binaryTable)))
+      }
+      result <- cbind(column1, column2)
+    } else {
+      stop("Don't know what to do when there are more rows in the table of continuous covariates than there are in the table of binary covariates.")
+    }
+  } else if (output == "one column") {
+    ct <- continuousTable
+    colnames(ct) <- colnames(binaryTable)
+    result <- rbind(binaryTable,
+                    rep("", ncol(binaryTable)),
+                    colnames(continuousTable),
+                    ct)
+  } else {
+    result <- list(part1 = binaryTable, part2 = continuousTable)
+  }
   return(result)
 }
