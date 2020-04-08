@@ -308,7 +308,7 @@ additionalTable1 <- function(connectionDetails = connectionDetails,
                                     fileName = file.path(exportFolder, sprintf("base_char_cohortId%s_until%s.csv",cohortId, endDay)))
       },
       error = function(e) {
-        ParallelLogger::logTrace(paste0(sprinf("Generating table 1 for cohort ID %s is failed. The error message:", cohortId), e))},
+        ParallelLogger::logTrace(paste0(sprintf("Generating table 1 for cohort ID %s is failed. The error message:", cohortId), e))},
       finally = {
         ParallelLogger::logTrace('Done.')})
       
