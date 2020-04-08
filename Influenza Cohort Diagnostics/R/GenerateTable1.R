@@ -36,7 +36,8 @@ comparativeCharacterization <- function(connectionDetails,
                                         percentDigits = 1, 
                                         valueDigits = 1,
                                         stdDiffDigits = 2,
-                                        studyPopulationSetting = NULL){
+                                        studyPopulationSetting = NULL,
+                                        fileName = NULL){
   if (!file.exists(outputFolder))
     dir.create(outputFolder, recursive = TRUE)
   if (!is.null(getOption("fftempdir")) && !file.exists(getOption("fftempdir"))) {
@@ -88,10 +89,11 @@ comparativeCharacterization <- function(connectionDetails,
                            percentDigits = 1, 
                            valueDigits = 1,
                            stdDiffDigits = 2)
-    exportFilePath = file.path(exportFolder,sprintf('base_char_t%s_c%s.csv',targetComparatorId,ifelse(is.null(comparatorCohortId),"",comparatorCohortId)))
-    write.csv(table1,exportFilePath)
-    ParallelLogger::logInfo(sprintf("Table 1 is saved in %s", exportFilePath))
-    
+    if(!is.null(fileName)){
+      exportFilePath = file.path(exportFolder,fileName)
+      write.csv(table1,exportFilePath)
+      ParallelLogger::logInfo(sprintf("Table 1 is saved in %s", exportFilePath))
+    }
     
     
   }else{
