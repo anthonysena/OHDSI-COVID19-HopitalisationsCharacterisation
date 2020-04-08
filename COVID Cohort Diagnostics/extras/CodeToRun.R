@@ -8,9 +8,13 @@
 # install.packages("dplyr")
 # install.packages("RJSONIO")
 # install.packages("devtools")
-# devtools::install_github("FeatureExtraction")
-# devtools::install_github("ROhdsiWebApi")
-# devtools::install_github("CohortDiagnostics")
+# devtools::install_github("OHDSI/ROhdsiWebApi")
+# devtools::install_github("OHDSI/FeatureExtraction")
+# devtools::install_github("OHDSI/CohortDiagnostics")
+# --------------------------------------------
+# If using Google BiQuery, install the "develop" branch
+# devtools::install_github("OHDSI/FeatureExtraction", ref="develop")
+# devtools::install_github("OHDSI/CohortDiagnostics", ref="develop")
 
 # Load the package
 library(CovidHospCohortDiag)
@@ -51,13 +55,13 @@ runCohortDiagnostics(connectionDetails = connectionDetails,
                      databaseName = databaseName,
                      databaseDescription = databaseDescription,
                      createCohorts = TRUE,
-                     runInclusionStatistics = TRUE,
-                     runIncludedSourceConcepts = TRUE,
+                     runInclusionStatistics = FALSE,
+                     runIncludedSourceConcepts = FALSE,
                      runOrphanConcepts = FALSE,
-                     runTimeDistributions = TRUE,
-                     runBreakdownIndexEvents = TRUE,
-                     runIncidenceRates = TRUE,
-                     runCohortOverlap = TRUE,
+                     runTimeDistributions = FALSE,
+                     runBreakdownIndexEvents = FALSE,
+                     runIncidenceRates = FALSE,
+                     runCohortOverlap = FALSE,
                      runCohortCharacterization = TRUE,
                      minCellCount = 10)
 
