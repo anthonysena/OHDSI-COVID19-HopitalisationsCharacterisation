@@ -35,76 +35,20 @@ additionalTable1 <- function(connectionDetails = connectionDetails,
   }
   
   #Defining concept IDs
-  conditionGroupConceptIds <- c(439777, #Anemia
-                                4212540, #Chronic liver disease
-                                201820, #Diabetes mellitus
-                                435216, #Disorder due to type 1 diabetes mellitus
-                                443732, #Disorder due to type 2 diabetes mellitus
-                                318800, #Gastroesophageal reflux disease
-                                192671, #Gastrointestinal hemorrhage
-                                4030518, #Renal impairment
-                                193782, #End-stage renal disease
-                                439727, #Human immunodeficiency virus infection
-                                432867, #Hyperlipidemia
-                                80180, #Osteoarthritis
-                                433740, #Immunodeficiency disorder
-                                4291005, #Viral hepatitis
-                                197494, #Viral hepatitis C
-                                4281232, #Type B viral hepatitis
-                                380378, #Epilepsy
-                                313217, #Atrial fibrillation
-                                321319, #Cardiomyopathy
-                                381591, #Cerebrovascular disease
-                                317576, #Coronary arteriosclerosis
-                                321588, #Heart disease
-                                316139, #Heart failure
-                                316866, #Hypertensive disorder
-                                4185932, #Ischemic heart disease
-                                321052, #Peripheral vascular disease
-                                440417, #Pulmonary embolism
-                                444247, #Venous thrombosis
-                                438112, #Neoplastic disease
-                                443392, #Malignant neoplastic disease
-                                4147164, #Malignant tumor of lymphoid hemopoietic and related tissue
-                                432571, #Malignant lymphoma
-                                4044013, #Hematologic neoplasm
-                                4112853, #Malignant neoplasm of female breast
-                                36683531, #Malignant neoplasm of colon and/or rectum
-                                40493428, #Malignant neoplasm of respiratory system
-                                258369, #Primary malignant neoplasm of lung
-                                4128888, #Neoplasm of lung
-                                200962, #Primary malignant neoplasm of prostate
-                                444209, #Neoplasm of skin
-                                40491001, #Malignant neoplasm of digestive system
-                                443387, #Malignant neoplasm of stomach
-                                4111017, #Neoplasm of head and neck
-                                4181338, #Malignant tumor of oropharynx
-                                4154630, #Malignant neoplasm of genitourinary organ
-                                317009, #Asthma
-                                255573, #Chronic obstructive lung disease
-                                255841, #Chronic bronchitis
-                                261325, #Pulmonary emphysema
-                                441267, #Cystic fibrosis
-                                256449, #Bronchiectasis
-                                4119786, #Interstitial lung disease
-                                4322024, #Pulmonary hypertension
-                                140168, #Psoriasis
-                                80809, #Psoriasis
-                                255891, #Lupus erythematosus
-                                374919,
-                                4074815,
-                                201606,
-                                81893,
-                                4253901,
-                                4290976,
-                                4182210,
-                                438409,
-                                440383,
-                                435783,
-                                4279309,
-                                255848,
-                                81902
-  )
+  conditionGroupConceptIds <- 
+    c(439777,4212540,201820,201254,201826,318800,192671,4030518,193782,
+439727,432867,80180,4291005,4281232,197494,380378,81902,434557,440638,
+432586,4182210,440383,435783,4279309,134057,381591,313217,
+321319,381591,317576,321588,316139,316866,4185932,321052,
+440417,4167085,4231363,444247,44784217,314054,438112,
+443392,4147164,432571,4044013,
+4112853,4180790,40481902,40493428,443388,40493428,200962,
+4155297,3169522,255055008,363392002,
+4154630,320136,317009,255573,255841,261325,441267,256449,
+3185877,4322024,4197819,313459,40396500,4212886,433740,
+140168,80809,255891,374919,4074815,201606,
+81893,4253901,314963,4028942,40438630,40386324,
+194992,443394,254443,134442,432295,192675,200762,76685,4103532,4137275)
   
   drugGroupConceptIds <- c(21601822,
                            21602796,
