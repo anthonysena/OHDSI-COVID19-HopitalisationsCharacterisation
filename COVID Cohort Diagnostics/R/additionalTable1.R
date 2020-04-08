@@ -26,7 +26,7 @@ additionalTable1 <- function(connectionDetails = connectionDetails,
                              minCellCount = 10){
   start <- Sys.time()
   
-  pathToCsv <- system.file("settings", "CohortsToCreateInfluenza.csv", package = "InfluenzaHospCohortDiag")
+  pathToCsv <- system.file("settings", "CohortsToCreateCovid.csv", package = "CovidHospCohortDiag")
   cohortsToCreate <- read.csv(pathToCsv)
   
   exportFolder <- file.path(outputFolder, "diagnosticsExport")
@@ -172,6 +172,7 @@ additionalTable1 <- function(connectionDetails = connectionDetails,
                                 1335471
   )
 
+  
   for( i in 1:nrow(cohortsToCreate)){
     cohortName <- cohortsToCreate$name[i]
     cohortId <- cohortsToCreate$cohortId[i]
